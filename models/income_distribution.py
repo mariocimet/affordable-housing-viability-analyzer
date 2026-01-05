@@ -70,31 +70,41 @@ class BCIncomeDistribution:
     def affordability_band(
         self,
         monthly_rent: float,
-        affordability_ratio: float = 0.30,
-        upper_percentile: float = 75
+        affordability_ratio_lower: float = 0.25,
+        affordability_ratio_upper: float = 0.30
     ) -> Tuple[float, float, float, float]:
         """
         Calculate the affordability band for a given rent.
 
+        The band represents households where rent is between lower and upper
+        affordability ratios of their income:
+        - Lower ratio (e.g., 25%): sets upper income bound (rent is at least this % of income)
+        - Upper ratio (e.g., 30%): sets lower income bound (rent is at most this % of income)
+
         Args:
             monthly_rent: Monthly rent in dollars
-            affordability_ratio: Max rent as fraction of income (default 30%)
-            upper_percentile: Upper income percentile limit (default 75th)
+            affordability_ratio_lower: Min rent as fraction of income (e.g., 0.25)
+            affordability_ratio_upper: Max rent as fraction of income (e.g., 0.30)
 
         Returns:
-            Tuple of (lower_income, upper_income, lower_percentile, upper_percentile)
-            where lower_income is the minimum income needed to afford the rent
+            Tuple of (min_income, max_income, lower_percentile, upper_percentile)
         """
         annual_rent = monthly_rent * 12
 
-        # Minimum income needed (rent = affordability_ratio * income)
-        min_income_needed = annual_rent / affordability_ratio
-        lower_percentile = self.percentile_at_income(min_income_needed)
+        # Minimum income needed (rent = upper_ratio * income means they can just afford it)
+        min_income = annual_rent / affordability_ratio_upper
+        lower_percentile = self.percentile_at_income(min_income)
 
-        # Upper bound is the program limit
-        upper_income = self.income_at_percentile(upper_percentile)
+        # Maximum income (rent = lower_ratio * income means rent is "cheap enough" for program)
+        # If lower_ratio is 0, there's no upper income cap
+        if affordability_ratio_lower > 0:
+            max_income = annual_rent / affordability_ratio_lower
+            upper_percentile = self.percentile_at_income(max_income)
+        else:
+            max_income = self.income_at_percentile(100)
+            upper_percentile = 100
 
-        return min_income_needed, upper_income, lower_percentile, upper_percentile
+        return min_income, max_income, lower_percentile, upper_percentile
 
     def get_curve_data(
         self,
@@ -148,8 +158,8 @@ def calculate_band_over_time(
     distribution: BCIncomeDistribution,
     initial_rent: float,
     escalation_rates: List[float],
-    affordability_ratio: float = 0.30,
-    upper_percentile: float = 75,
+    affordability_ratio_lower: float = 0.25,
+    affordability_ratio_upper: float = 0.30,
     income_growth_rate: float = 0.02
 ) -> List[dict]:
     """
@@ -161,8 +171,8 @@ def calculate_band_over_time(
         distribution: Income distribution model (baseline)
         initial_rent: Starting monthly rent
         escalation_rates: Annual rent escalation rates
-        affordability_ratio: Max rent as fraction of income
-        upper_percentile: Upper income percentile limit
+        affordability_ratio_lower: Min rent as fraction of income (program floor)
+        affordability_ratio_upper: Max rent as fraction of income (affordability cap)
         income_growth_rate: Annual income growth rate (inflation)
 
     Returns:
@@ -181,7 +191,7 @@ def calculate_band_over_time(
         )
 
         min_income, max_income, lower_pct, upper_pct = year_distribution.affordability_band(
-            rent, affordability_ratio, upper_percentile
+            rent, affordability_ratio_lower, affordability_ratio_upper
         )
 
         # Band width in percentiles

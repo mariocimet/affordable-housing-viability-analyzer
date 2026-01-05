@@ -16,8 +16,8 @@ from models.income_distribution import BCIncomeDistribution, calculate_band_over
 def create_income_band_chart(
     distribution: BCIncomeDistribution,
     monthly_rent: float,
-    affordability_ratio: float = 0.30,
-    upper_percentile: float = 75,
+    affordability_ratio_lower: float = 0.25,
+    affordability_ratio_upper: float = 0.30,
     escalation_rates: List[float] = None,
     show_animation: bool = True,
     income_growth_rate: float = 0.02
@@ -28,8 +28,8 @@ def create_income_band_chart(
     Args:
         distribution: BC income distribution model
         monthly_rent: Initial monthly rent
-        affordability_ratio: Max rent as fraction of income
-        upper_percentile: Upper income percentile limit
+        affordability_ratio_lower: Min rent as fraction of income (program floor)
+        affordability_ratio_upper: Max rent as fraction of income (affordability cap)
         escalation_rates: Optional list of annual rent increases for animation
         show_animation: Whether to include time animation
         income_growth_rate: Annual income growth rate (inflation)
@@ -42,20 +42,20 @@ def create_income_band_chart(
 
     # Calculate initial band
     min_income, max_income, lower_pct, upper_pct = distribution.affordability_band(
-        monthly_rent, affordability_ratio, upper_percentile
+        monthly_rent, affordability_ratio_lower, affordability_ratio_upper
     )
 
     if show_animation and escalation_rates:
         return _create_animated_chart(
             distribution, incomes, densities, monthly_rent,
-            affordability_ratio, upper_percentile, escalation_rates,
+            affordability_ratio_lower, affordability_ratio_upper, escalation_rates,
             income_growth_rate
         )
     else:
         return _create_static_chart(
             distribution, incomes, densities,
             min_income, max_income, lower_pct, upper_pct,
-            monthly_rent, affordability_ratio
+            monthly_rent, affordability_ratio_lower, affordability_ratio_upper
         )
 
 
@@ -68,7 +68,8 @@ def _create_static_chart(
     lower_pct: float,
     upper_pct: float,
     monthly_rent: float,
-    affordability_ratio: float
+    affordability_ratio_lower: float,
+    affordability_ratio_upper: float
 ) -> go.Figure:
     """Create static income band chart."""
 
@@ -96,30 +97,33 @@ def _create_static_chart(
             fill='toself',
             fillcolor='rgba(46, 204, 113, 0.4)',
             line=dict(color='rgba(46, 204, 113, 0)'),
-            name=f'Affordability Band ({lower_pct:.1f}% - {upper_pct:.1f}%)',
+            name=f'Target Band ({lower_pct:.1f}th - {upper_pct:.1f}th %ile)',
             hoverinfo='skip'
         ))
 
     # Vertical lines for band boundaries
     max_density = max(densities)
 
+    # Lower boundary line (min income needed - from upper affordability ratio)
     fig.add_trace(go.Scatter(
         x=[min_income, min_income],
         y=[0, distribution.pdf(min_income)],
         mode='lines',
         line=dict(color='#E74C3C', width=2, dash='dash'),
-        name=f'Min Income: ${min_income:,.0f}',
-        hovertemplate=f'Minimum income needed<br>${min_income:,.0f}<br>({lower_pct:.1f}th percentile)<extra></extra>'
+        name=f'Min Income ({affordability_ratio_upper:.0%} burden): ${min_income:,.0f}',
+        hovertemplate=f'Min income (rent = {affordability_ratio_upper:.0%} of income)<br>${min_income:,.0f}<br>({lower_pct:.1f}th percentile)<extra></extra>'
     ))
 
-    fig.add_trace(go.Scatter(
-        x=[max_income, max_income],
-        y=[0, distribution.pdf(max_income)],
-        mode='lines',
-        line=dict(color='#9B59B6', width=2, dash='dash'),
-        name=f'Max Income: ${max_income:,.0f}',
-        hovertemplate=f'75th percentile cap<br>${max_income:,.0f}<extra></extra>'
-    ))
+    # Upper boundary line (max income - from lower affordability ratio)
+    if affordability_ratio_lower > 0:
+        fig.add_trace(go.Scatter(
+            x=[max_income, max_income],
+            y=[0, distribution.pdf(max_income)],
+            mode='lines',
+            line=dict(color='#9B59B6', width=2, dash='dash'),
+            name=f'Max Income ({affordability_ratio_lower:.0%} burden): ${max_income:,.0f}',
+            hovertemplate=f'Max income (rent = {affordability_ratio_lower:.0%} of income)<br>${max_income:,.0f}<br>({upper_pct:.1f}th percentile)<extra></extra>'
+        ))
 
     # Add percentile annotations
     fig.add_annotation(
@@ -129,12 +133,20 @@ def _create_static_chart(
         font=dict(color='#E74C3C', size=10)
     )
 
+    if affordability_ratio_lower > 0:
+        fig.add_annotation(
+            x=max_income, y=distribution.pdf(max_income) * 1.1,
+            text=f'{upper_pct:.1f}th %ile',
+            showarrow=False,
+            font=dict(color='#9B59B6', size=10)
+        )
+
     band_width = max(0, upper_pct - lower_pct)
 
     fig.update_layout(
         title=dict(
             text=f'BC Household Income Distribution<br><sub>Rent: ${monthly_rent:,.0f}/mo | '
-                 f'Affordability Band: {band_width:.1f}% of households</sub>',
+                 f'Target Band: {band_width:.1f}% of households ({lower_pct:.0f}th-{upper_pct:.0f}th %ile)</sub>',
             x=0.5
         ),
         xaxis_title='Annual Household Income (CAD)',
@@ -162,8 +174,8 @@ def _create_animated_chart(
     incomes: np.ndarray,
     densities: np.ndarray,
     initial_rent: float,
-    affordability_ratio: float,
-    upper_percentile: float,
+    affordability_ratio_lower: float,
+    affordability_ratio_upper: float,
     escalation_rates: List[float],
     income_growth_rate: float = 0.02
 ) -> go.Figure:
@@ -171,7 +183,7 @@ def _create_animated_chart(
 
     bands = calculate_band_over_time(
         distribution, initial_rent, escalation_rates,
-        affordability_ratio, upper_percentile, income_growth_rate
+        affordability_ratio_lower, affordability_ratio_upper, income_growth_rate
     )
 
     # Create frames for animation

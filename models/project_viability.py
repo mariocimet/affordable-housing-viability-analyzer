@@ -31,7 +31,8 @@ class ProjectParameters:
     inflation_assumption: float = 0.02  # Inflation assumption (Economic)
 
     # Conventional Parameters
-    affordability_ratio: float = 0.30  # Max rent as % of income (Conventional)
+    affordability_ratio_lower: float = 0.25  # Min rent as % of income (program floor)
+    affordability_ratio_upper: float = 0.30  # Max rent as % of income (affordability cap)
     sqft_per_unit: float = 800  # Average unit size (Conventional)
 
     # Target Returns
@@ -219,7 +220,8 @@ PARAM_INFO = {
         'driver': 'Historical Trend',
         'default_range': (-0.5, 0.5),
         'default': 0.03,
-        'format': '{:.1%}'
+        'format': '{:.1%}',
+        'precise_input': True
     },
 
     # Lender Parameters
@@ -227,17 +229,19 @@ PARAM_INFO = {
         'name': 'Interest Rate (Senior Debt)',
         'category': 'Primary Lender',
         'driver': 'ALM, Cost of Capital, GoC Yield',
-        'default_range': (0.0, 1.0),
+        'default_range': (0.0, 0.20),
         'default': 0.05,
-        'format': '{:.1%}'
+        'format': '{:.1%}',
+        'precise_input': True
     },
     'interest_rate_secondary': {
         'name': 'Interest Rate (Secondary Debt)',
         'category': 'Secondary Lender',
         'driver': 'ALM, Cost of Capital, GoC Yield',
-        'default_range': (0.0, 1.0),
+        'default_range': (0.0, 0.25),
         'default': 0.08,
-        'format': '{:.1%}'
+        'format': '{:.1%}',
+        'precise_input': True
     },
     'max_ltv': {
         'name': 'Maximum Loan to Value',
@@ -261,22 +265,32 @@ PARAM_INFO = {
         'name': 'Risk Free Rate',
         'category': 'Economic',
         'driver': 'Inflation Expectations',
-        'default_range': (0.0, 1.0),
+        'default_range': (0.0, 0.15),
         'default': 0.03,
-        'format': '{:.1%}'
+        'format': '{:.1%}',
+        'precise_input': True
     },
     'inflation_assumption': {
         'name': 'Inflation Assumption',
         'category': 'Economic',
         'driver': 'Historical Trend',
-        'default_range': (-0.5, 0.5),
+        'default_range': (-0.10, 0.15),
         'default': 0.02,
-        'format': '{:.1%}'
+        'format': '{:.1%}',
+        'precise_input': True
     },
 
     # Conventional Parameters
-    'affordability_ratio': {
-        'name': 'Affordability Ratio',
+    'affordability_ratio_lower': {
+        'name': 'Affordability Ratio (Lower)',
+        'category': 'Conventional',
+        'driver': 'Program Minimum Rent Burden',
+        'default_range': (0.0, 1.0),
+        'default': 0.25,
+        'format': '{:.1%}'
+    },
+    'affordability_ratio_upper': {
+        'name': 'Affordability Ratio (Upper)',
         'category': 'Conventional',
         'driver': 'Household Financial Planning Expectations',
         'default_range': (0.0, 1.0),

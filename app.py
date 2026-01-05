@@ -92,7 +92,33 @@ def create_param_input(param_key, prefix="", allow_unspecified=False):
         if not is_specified:
             return None
 
-    if '%' in info['format']:
+    # Check if this is a precise input parameter (rates with 0.1% precision)
+    if info.get('precise_input'):
+        # Use number_input with 0.1% precision for rates
+        value = st.number_input(
+            info['name'],
+            min_value=float(info['default_range'][0]) * 100,
+            max_value=float(info['default_range'][1]) * 100,
+            value=float(info['default']) * 100,
+            step=0.1,
+            format="%.1f",
+            key=key,
+            help=f"Driver: {info.get('driver', '')}"
+        ) / 100
+        st.caption(f"Current: {value:.1%}")
+    elif '%ile' in info['format']:
+        # Percentile inputs (0-100 integer)
+        value = st.slider(
+            info['name'],
+            min_value=int(info['default_range'][0]),
+            max_value=int(info['default_range'][1]),
+            value=int(info['default']),
+            step=1,
+            format="%d",
+            key=key,
+            help=f"Driver: {info.get('driver', '')}"
+        )
+    elif '%' in info['format']:
         min_val = int(info['default_range'][0] * 100)
         max_val = int(info['default_range'][1] * 100)
         default_val = int(info['default'] * 100)
@@ -142,6 +168,69 @@ def create_param_input(param_key, prefix="", allow_unspecified=False):
     return value
 
 
+# Initialize session state for synchronized values
+if 'acquisition_cost_psf' not in st.session_state:
+    st.session_state.acquisition_cost_psf = 400.0
+if 'total_sqft' not in st.session_state:
+    st.session_state.total_sqft = 50000.0
+if 'total_acquisition' not in st.session_state:
+    st.session_state.total_acquisition = 400.0 * 50000.0
+if 'rent_psf' not in st.session_state:
+    st.session_state.rent_psf = 2.50
+if 'sqft_per_unit' not in st.session_state:
+    st.session_state.sqft_per_unit = 800.0
+if 'monthly_unit_rent' not in st.session_state:
+    st.session_state.monthly_unit_rent = 2.50 * 800.0
+
+
+def update_acquisition_from_psf():
+    """Update total acquisition when cost per sqft changes."""
+    st.session_state.total_acquisition = st.session_state.acq_psf_input * st.session_state.total_sqft
+
+
+def update_acquisition_from_total():
+    """Update cost per sqft when total acquisition changes."""
+    if st.session_state.total_sqft > 0:
+        st.session_state.acquisition_cost_psf = st.session_state.total_acq_input / st.session_state.total_sqft
+
+
+def update_acquisition_from_sqft_psf():
+    """Update total acquisition when sqft changes (in psf mode)."""
+    st.session_state.total_sqft = st.session_state.total_sqft_input
+    st.session_state.total_acquisition = st.session_state.acquisition_cost_psf * st.session_state.total_sqft
+
+
+def update_acquisition_from_sqft_total():
+    """Update cost per sqft when sqft changes (in total mode)."""
+    st.session_state.total_sqft = st.session_state.total_sqft_input_2
+    if st.session_state.total_sqft > 0:
+        st.session_state.acquisition_cost_psf = st.session_state.total_acquisition / st.session_state.total_sqft
+
+
+def update_rent_from_psf():
+    """Update monthly rent when rent per sqft changes."""
+    st.session_state.monthly_unit_rent = st.session_state.rent_psf_input * st.session_state.sqft_per_unit
+
+
+def update_rent_from_unit():
+    """Update rent per sqft when monthly unit rent changes."""
+    if st.session_state.sqft_per_unit > 0:
+        st.session_state.rent_psf = st.session_state.unit_rent_input / st.session_state.sqft_per_unit
+
+
+def update_rent_from_sqft_psf_mode():
+    """Update rent values when sqft per unit changes (in Per Sq Ft mode)."""
+    st.session_state.sqft_per_unit = st.session_state.sqft_per_unit_input
+    st.session_state.monthly_unit_rent = st.session_state.rent_psf * st.session_state.sqft_per_unit
+
+
+def update_rent_from_sqft_unit_mode():
+    """Update rent values when sqft per unit changes (in Unit Rent mode)."""
+    st.session_state.sqft_per_unit = st.session_state.sqft_per_unit_input_2
+    if st.session_state.sqft_per_unit > 0:
+        st.session_state.rent_psf = st.session_state.monthly_unit_rent / st.session_state.sqft_per_unit
+
+
 with st.sidebar:
     st.header("Model Parameters")
 
@@ -154,23 +243,51 @@ with st.sidebar:
     st.markdown("**Cost per Sq Ft**")
     acq_mode = st.radio("Acquisition input", ["Per Sq Ft", "Total Cost"],
                         horizontal=True, key="acq_mode", label_visibility="collapsed")
+
     if acq_mode == "Per Sq Ft":
-        acquisition_cost_psf = st.number_input(
-            "$/sq ft", value=400.0, step=10.0, key="acq_psf"
+        st.number_input(
+            "$/sq ft",
+            value=st.session_state.acquisition_cost_psf,
+            step=10.0,
+            key="acq_psf_input",
+            on_change=update_acquisition_from_psf
         )
-        total_sqft = st.number_input(
-            "Total Sq Ft (for calculations)", value=50000.0, step=1000.0, key="total_sqft"
+        st.session_state.acquisition_cost_psf = st.session_state.acq_psf_input
+
+        st.number_input(
+            "Total Sq Ft",
+            value=st.session_state.total_sqft,
+            step=1000.0,
+            key="total_sqft_input",
+            on_change=update_acquisition_from_sqft_psf
         )
-        total_acquisition = acquisition_cost_psf * total_sqft
+        st.session_state.total_sqft = st.session_state.total_sqft_input
+        st.session_state.total_acquisition = st.session_state.acquisition_cost_psf * st.session_state.total_sqft
     else:
-        total_acquisition = st.number_input(
-            "Total Acquisition Cost ($)", value=20000000.0, step=100000.0,
-            format="%.0f", key="total_acq"
+        st.number_input(
+            "Total Acquisition Cost ($)",
+            value=st.session_state.total_acquisition,
+            step=100000.0,
+            format="%.0f",
+            key="total_acq_input",
+            on_change=update_acquisition_from_total
         )
-        total_sqft = st.number_input(
-            "Total Sq Ft", value=50000.0, step=1000.0, key="total_sqft_2"
+        st.session_state.total_acquisition = st.session_state.total_acq_input
+
+        st.number_input(
+            "Total Sq Ft",
+            value=st.session_state.total_sqft,
+            step=1000.0,
+            key="total_sqft_input_2",
+            on_change=update_acquisition_from_sqft_total
         )
-        acquisition_cost_psf = total_acquisition / total_sqft if total_sqft > 0 else 0
+        st.session_state.total_sqft = st.session_state.total_sqft_input_2
+        if st.session_state.total_sqft > 0:
+            st.session_state.acquisition_cost_psf = st.session_state.total_acquisition / st.session_state.total_sqft
+
+    acquisition_cost_psf = st.session_state.acquisition_cost_psf
+    total_sqft = st.session_state.total_sqft
+    total_acquisition = st.session_state.total_acquisition
 
     st.caption(f"= ${acquisition_cost_psf:,.2f}/sq ft | ${total_acquisition:,.0f} total")
 
@@ -178,18 +295,50 @@ with st.sidebar:
     st.markdown("**Rent per Sq Ft (Monthly)**")
     rent_mode = st.radio("Rent input", ["Per Sq Ft", "Unit Rent"],
                          horizontal=True, key="rent_mode", label_visibility="collapsed")
+
     if rent_mode == "Per Sq Ft":
-        rent_psf = st.number_input(
-            "$/sq ft/mo", value=2.50, step=0.10, key="rent_psf"
+        st.number_input(
+            "$/sq ft/mo",
+            value=st.session_state.rent_psf,
+            step=0.10,
+            key="rent_psf_input",
+            on_change=update_rent_from_psf
         )
-        sqft_per_unit = create_param_input('sqft_per_unit', 'sidebar_')
-        monthly_unit_rent = rent_psf * sqft_per_unit
+        st.session_state.rent_psf = st.session_state.rent_psf_input
+
+        st.number_input(
+            "Sq Ft per Unit",
+            value=st.session_state.sqft_per_unit,
+            step=10.0,
+            key="sqft_per_unit_input",
+            on_change=update_rent_from_sqft_psf_mode
+        )
+        st.session_state.sqft_per_unit = st.session_state.sqft_per_unit_input
+        st.session_state.monthly_unit_rent = st.session_state.rent_psf * st.session_state.sqft_per_unit
     else:
-        monthly_unit_rent = st.number_input(
-            "Monthly Unit Rent ($)", value=2000.0, step=50.0, key="unit_rent"
+        st.number_input(
+            "Monthly Unit Rent ($)",
+            value=st.session_state.monthly_unit_rent,
+            step=50.0,
+            key="unit_rent_input",
+            on_change=update_rent_from_unit
         )
-        sqft_per_unit = create_param_input('sqft_per_unit', 'sidebar_')
-        rent_psf = monthly_unit_rent / sqft_per_unit if sqft_per_unit > 0 else 0
+        st.session_state.monthly_unit_rent = st.session_state.unit_rent_input
+
+        st.number_input(
+            "Sq Ft per Unit",
+            value=st.session_state.sqft_per_unit,
+            step=10.0,
+            key="sqft_per_unit_input_2",
+            on_change=update_rent_from_sqft_unit_mode
+        )
+        st.session_state.sqft_per_unit = st.session_state.sqft_per_unit_input_2
+        if st.session_state.sqft_per_unit > 0:
+            st.session_state.rent_psf = st.session_state.monthly_unit_rent / st.session_state.sqft_per_unit
+
+    rent_psf = st.session_state.rent_psf
+    sqft_per_unit = st.session_state.sqft_per_unit
+    monthly_unit_rent = st.session_state.monthly_unit_rent
 
     st.caption(f"= ${rent_psf:,.2f}/sq ft | ${monthly_unit_rent:,.0f}/unit")
 
@@ -216,7 +365,8 @@ with st.sidebar:
     # Conventional Parameters
     # ============================================
     st.subheader("Conventional")
-    affordability_ratio = create_param_input('affordability_ratio', 'sidebar_')
+    affordability_ratio_lower = create_param_input('affordability_ratio_lower', 'sidebar_')
+    affordability_ratio_upper = create_param_input('affordability_ratio_upper', 'sidebar_')
     # sqft_per_unit already captured above
 
     # ============================================
@@ -246,7 +396,8 @@ all_params = {
     'median_income': median_income,
     'risk_free_rate': risk_free_rate,
     'inflation_assumption': inflation_assumption,
-    'affordability_ratio': affordability_ratio,
+    'affordability_ratio_lower': affordability_ratio_lower,
+    'affordability_ratio_upper': affordability_ratio_upper,
     'sqft_per_unit': sqft_per_unit,
     'equity_return_required': equity_return_required,
 }
@@ -257,9 +408,9 @@ model = ProjectViabilityModel(params)
 is_viable, viability_metrics = model.is_viable()
 metrics = model.calculate_metrics(total_sqft=total_sqft)
 
-# Affordability band
+# Affordability band - percentiles are calculated from the affordability ratio bounds
 min_income, max_income_band, lower_pct, upper_pct = distribution.affordability_band(
-    monthly_rent, affordability_ratio, 75
+    monthly_rent, affordability_ratio_lower, affordability_ratio_upper
 )
 band_width = max(0, upper_pct - lower_pct)
 
@@ -273,7 +424,7 @@ with col1:
 with col2:
     st.metric("Min Income Required", f"${min_income:,.0f}")
 with col3:
-    st.metric("Households Served", f"{band_width:.1f}%", delta=f"{lower_pct:.0f}-75th %ile")
+    st.metric("Households Served", f"{band_width:.1f}%", delta=f"{lower_pct:.0f}-{upper_pct:.0f}th %ile")
 with col4:
     st.metric("DSCR", f"{metrics['dscr']:.2f}")
 with col5:
@@ -301,13 +452,13 @@ with viz_col1:
     fig1 = create_income_band_chart(
         distribution=distribution,
         monthly_rent=monthly_rent,
-        affordability_ratio=affordability_ratio,
-        upper_percentile=75,
+        affordability_ratio_lower=affordability_ratio_lower,
+        affordability_ratio_upper=affordability_ratio_upper,
         escalation_rates=escalation_rates,
         show_animation=True,
         income_growth_rate=inflation_assumption
     )
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig1, width="stretch")
 
 # RIGHT: Project Viability Space
 with viz_col2:
@@ -350,7 +501,7 @@ with viz_col2:
         y_range=y_range,
         projects=None
     )
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width="stretch")
 
 st.divider()
 
@@ -361,10 +512,10 @@ st.subheader("Affordability Band Evolution Over Time")
 
 bands = calculate_band_over_time(
     distribution, monthly_rent, escalation_rates,
-    affordability_ratio, 75, inflation_assumption
+    affordability_ratio_lower, affordability_ratio_upper, inflation_assumption
 )
 summary_fig = create_band_summary_chart(bands)
-st.plotly_chart(summary_fig, use_container_width=True)
+st.plotly_chart(summary_fig, width="stretch")
 
 # ============================================
 # ROW 4: Financial Summary

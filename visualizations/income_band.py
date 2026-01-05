@@ -19,7 +19,8 @@ def create_income_band_chart(
     affordability_ratio: float = 0.30,
     upper_percentile: float = 75,
     escalation_rates: List[float] = None,
-    show_animation: bool = True
+    show_animation: bool = True,
+    income_growth_rate: float = 0.02
 ) -> go.Figure:
     """
     Create interactive income distribution chart with affordability band.
@@ -31,6 +32,7 @@ def create_income_band_chart(
         upper_percentile: Upper income percentile limit
         escalation_rates: Optional list of annual rent increases for animation
         show_animation: Whether to include time animation
+        income_growth_rate: Annual income growth rate (inflation)
 
     Returns:
         Plotly Figure object
@@ -46,7 +48,8 @@ def create_income_band_chart(
     if show_animation and escalation_rates:
         return _create_animated_chart(
             distribution, incomes, densities, monthly_rent,
-            affordability_ratio, upper_percentile, escalation_rates
+            affordability_ratio, upper_percentile, escalation_rates,
+            income_growth_rate
         )
     else:
         return _create_static_chart(
@@ -161,37 +164,48 @@ def _create_animated_chart(
     initial_rent: float,
     affordability_ratio: float,
     upper_percentile: float,
-    escalation_rates: List[float]
+    escalation_rates: List[float],
+    income_growth_rate: float = 0.02
 ) -> go.Figure:
-    """Create animated chart showing band evolution over time."""
+    """Create animated chart showing band evolution over time with income growth."""
 
     bands = calculate_band_over_time(
         distribution, initial_rent, escalation_rates,
-        affordability_ratio, upper_percentile
+        affordability_ratio, upper_percentile, income_growth_rate
     )
 
     # Create frames for animation
     frames = []
 
+    # Get max income for consistent x-axis across all frames
+    final_median = bands[-1]['median_income']
+    final_dist = BCIncomeDistribution(median=final_median, sigma=distribution.sigma)
+    max_x = final_dist.income_at_percentile(99)
+
     for band_data in bands:
         year = band_data['year']
         rent = band_data['rent']
+        median_income = band_data['median_income']
         min_income = band_data['min_income']
         max_income = band_data['max_income']
         lower_pct = band_data['lower_percentile']
         upper_pct = band_data['upper_percentile']
         band_width = band_data['band_width']
 
+        # Create distribution for this year
+        year_dist = BCIncomeDistribution(median=median_income, sigma=distribution.sigma)
+        year_incomes, year_densities = year_dist.get_curve_data(num_points=500, max_income=max_x)
+
         # Create band mask
-        band_mask = (incomes >= min_income) & (incomes <= max_income)
-        band_incomes = incomes[band_mask]
-        band_densities = densities[band_mask]
+        band_mask = (year_incomes >= min_income) & (year_incomes <= max_income)
+        band_incomes = year_incomes[band_mask]
+        band_densities = year_densities[band_mask]
 
         frame_data = [
-            # Distribution curve
+            # Distribution curve (shifts right each year)
             go.Scatter(
-                x=incomes,
-                y=densities,
+                x=year_incomes,
+                y=year_densities,
                 mode='lines',
                 line=dict(color='#2E86AB', width=2),
             ),
@@ -210,7 +224,7 @@ def _create_animated_chart(
         # Min income line
         frame_data.append(go.Scatter(
             x=[min_income, min_income],
-            y=[0, distribution.pdf(min_income)],
+            y=[0, year_dist.pdf(min_income)],
             mode='lines',
             line=dict(color='#E74C3C', width=2, dash='dash'),
         ))
@@ -218,7 +232,7 @@ def _create_animated_chart(
         # Max income line
         frame_data.append(go.Scatter(
             x=[max_income, max_income],
-            y=[0, distribution.pdf(max_income)],
+            y=[0, year_dist.pdf(max_income)],
             mode='lines',
             line=dict(color='#9B59B6', width=2, dash='dash'),
         ))
@@ -228,22 +242,25 @@ def _create_animated_chart(
             name=str(year),
             layout=go.Layout(
                 title=dict(
-                    text=f'BC Household Income Distribution - Year {year}<br>'
-                         f'<sub>Rent: ${rent:,.0f}/mo | Band: {band_width:.1f}% of households | '
-                         f'Min Income: ${min_income:,.0f}</sub>'
+                    text=f'Household Income Distribution - Year {year}<br>'
+                         f'<sub>Rent: ${rent:,.0f}/mo | Median Income: ${median_income:,.0f} | '
+                         f'Band: {band_width:.1f}% of households</sub>'
                 )
             )
         ))
 
     # Initial frame data
     initial = bands[0]
-    band_mask = (incomes >= initial['min_income']) & (incomes <= initial['max_income'])
-    band_incomes = incomes[band_mask]
-    band_densities = densities[band_mask]
+    initial_dist = BCIncomeDistribution(median=initial['median_income'], sigma=distribution.sigma)
+    init_incomes, init_densities = initial_dist.get_curve_data(num_points=500, max_income=max_x)
+
+    band_mask = (init_incomes >= initial['min_income']) & (init_incomes <= initial['max_income'])
+    band_incomes = init_incomes[band_mask]
+    band_densities = init_densities[band_mask]
 
     fig = go.Figure(
         data=[
-            go.Scatter(x=incomes, y=densities, mode='lines',
+            go.Scatter(x=init_incomes, y=init_densities, mode='lines',
                       line=dict(color='#2E86AB', width=2), name='Income Distribution'),
             go.Scatter(
                 x=np.concatenate([band_incomes, band_incomes[::-1]]) if len(band_incomes) > 0 else [],
@@ -251,9 +268,9 @@ def _create_animated_chart(
                 fill='toself', fillcolor='rgba(46, 204, 113, 0.4)',
                 line=dict(color='rgba(46, 204, 113, 0)'), name='Affordability Band'
             ),
-            go.Scatter(x=[initial['min_income']]*2, y=[0, distribution.pdf(initial['min_income'])],
+            go.Scatter(x=[initial['min_income']]*2, y=[0, initial_dist.pdf(initial['min_income'])],
                       mode='lines', line=dict(color='#E74C3C', width=2, dash='dash'), name='Min Income'),
-            go.Scatter(x=[initial['max_income']]*2, y=[0, distribution.pdf(initial['max_income'])],
+            go.Scatter(x=[initial['max_income']]*2, y=[0, initial_dist.pdf(initial['max_income'])],
                       mode='lines', line=dict(color='#9B59B6', width=2, dash='dash'), name='75th %ile Cap'),
         ],
         frames=frames
@@ -262,13 +279,14 @@ def _create_animated_chart(
     # Add animation controls
     fig.update_layout(
         title=dict(
-            text=f'BC Household Income Distribution - Year 0<br>'
-                 f'<sub>Rent: ${initial["rent"]:,.0f}/mo | Band: {initial["band_width"]:.1f}% of households</sub>',
+            text=f'Household Income Distribution - Year 0<br>'
+                 f'<sub>Rent: ${initial["rent"]:,.0f}/mo | Median Income: ${initial["median_income"]:,.0f} | '
+                 f'Band: {initial["band_width"]:.1f}% of households</sub>',
             x=0.5
         ),
         xaxis_title='Annual Household Income (CAD)',
         yaxis_title='Probability Density',
-        xaxis=dict(tickformat='$,.0f', range=[0, distribution.income_at_percentile(99)]),
+        xaxis=dict(tickformat='$,.0f', range=[0, max_x]),
         yaxis=dict(showticklabels=False),
         template='plotly_white',
         updatemenus=[
@@ -338,10 +356,11 @@ def create_band_summary_chart(bands: List[dict]) -> go.Figure:
     band_widths = [b['band_width'] for b in bands]
     rents = [b['rent'] for b in bands]
     min_incomes = [b['min_income'] for b in bands]
+    median_incomes = [b.get('median_income', bands[0].get('median_income', 90000)) for b in bands]
 
     fig = make_subplots(
         rows=2, cols=1,
-        subplot_titles=('Affordability Band Width Over Time', 'Rent & Required Income'),
+        subplot_titles=('Affordability Band Width Over Time', 'Rent, Income & Required Income'),
         vertical_spacing=0.15
     )
 
@@ -364,7 +383,6 @@ def create_band_summary_chart(bands: List[dict]) -> go.Figure:
             mode='lines+markers',
             name='Monthly Rent',
             line=dict(color='#3498DB', width=2),
-            yaxis='y2'
         ),
         row=2, col=1
     )
@@ -375,6 +393,16 @@ def create_band_summary_chart(bands: List[dict]) -> go.Figure:
             mode='lines+markers',
             name='Min Income Required',
             line=dict(color='#E74C3C', width=2),
+        ),
+        row=2, col=1
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=years, y=median_incomes,
+            mode='lines+markers',
+            name='Median Income',
+            line=dict(color='#9B59B6', width=2, dash='dash'),
         ),
         row=2, col=1
     )

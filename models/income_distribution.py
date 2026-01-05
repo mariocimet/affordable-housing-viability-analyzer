@@ -149,17 +149,21 @@ def calculate_band_over_time(
     initial_rent: float,
     escalation_rates: List[float],
     affordability_ratio: float = 0.30,
-    upper_percentile: float = 75
+    upper_percentile: float = 75,
+    income_growth_rate: float = 0.02
 ) -> List[dict]:
     """
     Calculate affordability band evolution over time.
 
+    Both rents and incomes evolve: rents by escalation_rates, incomes by income_growth_rate.
+
     Args:
-        distribution: Income distribution model
+        distribution: Income distribution model (baseline)
         initial_rent: Starting monthly rent
         escalation_rates: Annual rent escalation rates
         affordability_ratio: Max rent as fraction of income
         upper_percentile: Upper income percentile limit
+        income_growth_rate: Annual income growth rate (inflation)
 
     Returns:
         List of dicts with band data for each year
@@ -167,8 +171,16 @@ def calculate_band_over_time(
     rents = calculate_rent_over_time(initial_rent, escalation_rates)
     bands = []
 
+    current_median = distribution.median
+
     for year, rent in enumerate(rents):
-        min_income, max_income, lower_pct, upper_pct = distribution.affordability_band(
+        # Create distribution for this year with inflated incomes
+        year_distribution = BCIncomeDistribution(
+            median=current_median,
+            sigma=distribution.sigma
+        )
+
+        min_income, max_income, lower_pct, upper_pct = year_distribution.affordability_band(
             rent, affordability_ratio, upper_percentile
         )
 
@@ -178,6 +190,7 @@ def calculate_band_over_time(
         bands.append({
             'year': year,
             'rent': rent,
+            'median_income': current_median,
             'min_income': min_income,
             'max_income': max_income,
             'lower_percentile': lower_pct,
@@ -185,5 +198,8 @@ def calculate_band_over_time(
             'band_width': band_width,
             'households_served_pct': max(0, band_width)
         })
+
+        # Grow income for next year
+        current_median *= (1 + income_growth_rate)
 
     return bands

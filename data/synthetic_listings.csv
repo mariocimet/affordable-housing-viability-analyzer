@@ -1,0 +1,51 @@
+id,source,address,city,asking_price,building_sqft,num_units,year_built
+SYN001,synthetic,509 Terminal Ave,Nanaimo,48093950,85209,102,1978.0
+SYN002,synthetic,9035 Marine Dr,Burnaby,38941729,49708,74,
+SYN003,synthetic,8379 Cook St,Victoria,65084576,88055,110,2015.0
+SYN004,synthetic,6973 McCallum Rd,Abbotsford,77559420,120573,171,
+SYN005,synthetic,7024 Gateway Blvd,Surrey,32176204,52189,71,
+SYN006,synthetic,6324 Kingsway,Burnaby,42401042,47866,71,
+SYN007,synthetic,8885 Robson St,Vancouver,118682123,119892,176,1975.0
+SYN008,synthetic,9559 Westminster Hwy,Richmond,57058203,81674,117,
+SYN009,synthetic,3914 No 3 Rd,Richmond,42222654,54597,63,1999.0
+SYN010,synthetic,6165 Austin Ave,Coquitlam,61700429,76837,104,2014.0
+SYN011,synthetic,2903 Terminal Ave,Nanaimo,27860333,49362,63,
+SYN012,synthetic,5413 Granville Ave,Richmond,47100166,54224,63,
+SYN013,synthetic,4486 Pinetree Way,Coquitlam,51512002,59989,90,2006.0
+SYN014,synthetic,8279 Austin Ave,Coquitlam,19299474,22467,30,
+SYN015,synthetic,4140 Granville Ave,Richmond,22396369,27596,33,2017.0
+SYN016,synthetic,6643 Gordon Dr,Kelowna,33156874,44429,60,1978.0
+SYN017,synthetic,871 Columbia St,New Westminster,27005158,41533,48,1980.0
+SYN018,synthetic,1140 Gordon Dr,Kelowna,46361479,69395,93,1999.0
+SYN019,synthetic,1976 No 3 Rd,Richmond,33272021,41021,50,1987.0
+SYN020,synthetic,4908 Lougheed Hwy,Coquitlam,22291406,29588,39,2016.0
+SYN021,synthetic,8417 Granville Ave,Richmond,129938424,145774,166,1989.0
+SYN022,synthetic,2604 Marine Dr,North Vancouver,39857111,52786,71,2019.0
+SYN023,synthetic,5410 Hastings St,Vancouver,49151963,63316,82,
+SYN024,synthetic,4046 Douglas St,Victoria,27911957,33910,39,1975.0
+SYN025,synthetic,8827 Columbia St,New Westminster,32558357,50487,60,2000.0
+SYN026,synthetic,8745 Scott Rd,Surrey,48984309,72921,84,1983.0
+SYN027,synthetic,3395 McCallum Rd,Abbotsford,22138376,36442,44,2012.0
+SYN028,synthetic,8579 Pinetree Way,Coquitlam,51720019,73235,96,
+SYN029,synthetic,9175 Hastings St,Vancouver,33597862,41744,59,1974.0
+SYN030,synthetic,3850 Terminal Ave,Nanaimo,24169177,46012,69,
+SYN031,synthetic,4662 Marine Dr,North Vancouver,37047695,48217,59,1978.0
+SYN032,synthetic,7844 Langley Bypass,Langley,95268869,142860,201,
+SYN033,synthetic,7162 Kingsway,Burnaby,45557680,58347,79,
+SYN034,synthetic,1712 Island Hwy,Nanaimo,20415500,31262,47,
+SYN035,synthetic,3216 Cook St,Victoria,60917585,94088,120,
+SYN036,synthetic,1335 6th St,New Westminster,26316959,32713,43,
+SYN037,synthetic,341 Broadway,Vancouver,77808918,78517,88,
+SYN038,synthetic,8056 152nd St,Surrey,17628772,23110,30,
+SYN039,synthetic,6496 Harvey Ave,Kelowna,20696881,29368,41,
+SYN040,synthetic,8073 Gordon Dr,Kelowna,36956602,60605,88,1973.0
+SYN041,synthetic,1098 McCallum Rd,Abbotsford,52290165,96254,115,
+SYN042,synthetic,1031 Marine Dr,North Vancouver,56887006,77446,87,
+SYN043,synthetic,3953 200th St,Langley,42881381,56320,75,
+SYN044,synthetic,751 Langley Bypass,Langley,35903755,54729,68,2007.0
+SYN045,synthetic,4372 Keith Rd,North Vancouver,23840303,26640,38,
+SYN046,synthetic,5015 Pandosy St,Kelowna,30811604,42036,55,
+SYN047,synthetic,1300 Columbia St,New Westminster,35930178,49417,63,
+SYN048,synthetic,6154 Canada Way,Burnaby,76660114,97368,135,2004.0
+SYN049,synthetic,9186 No 3 Rd,Richmond,57337042,68135,94,
+SYN050,synthetic,9164 Kingsway,Burnaby,17041668,22732,33,1983.0

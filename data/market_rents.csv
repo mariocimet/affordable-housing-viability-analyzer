@@ -1,0 +1,14 @@
+city,rent_psf,source
+Vancouver,3.50,CMHC
+Burnaby,3.20,CMHC
+Surrey,2.80,CMHC
+Victoria,3.00,CMHC
+Kelowna,2.60,CMHC
+Coquitlam,3.10,CMHC
+Richmond,3.30,CMHC
+New Westminster,2.90,CMHC
+North Vancouver,3.40,CMHC
+West Vancouver,3.80,CMHC
+Langley,2.70,CMHC
+Nanaimo,2.40,CMHC
+DEFAULT,2.80,CMHC

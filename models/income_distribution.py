@@ -18,8 +18,8 @@ class BCIncomeDistribution:
     Parameters calibrated to BC Statistics Canada data.
     """
 
-    # BC median household income (2023 estimate, CAD)
-    DEFAULT_MEDIAN = 90000
+    # BC median household income (2025 estimate, CAD)
+    DEFAULT_MEDIAN = 95000
 
     # Log-normal sigma parameter (controls spread/inequality)
     # Higher sigma = more inequality, longer right tail

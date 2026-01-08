@@ -335,6 +335,54 @@ class ProjectViabilityModel:
         return metrics['is_viable'], metrics
 
 
+def analyze_rent_roll_affordability(
+    rent_roll: 'RentRoll',
+    median_income: float = 95000,
+    affordability_ratio: float = 0.30,
+    sigma: float = 0.65
+) -> list:
+    """
+    Analyze affordability for each unit type in a rent roll.
+
+    Args:
+        rent_roll: RentRoll object with unit types
+        median_income: Median household income
+        affordability_ratio: Max rent as % of income (e.g., 0.30 = 30%)
+        sigma: Income distribution sigma (0.65 for BC)
+
+    Returns:
+        List of dicts with affordability metrics per unit type:
+        - unit_type, sqft, monthly_rent, count
+        - annual_rent, min_income_required
+        - percentile_required, pct_can_afford
+    """
+    mu = np.log(median_income)
+    dist = stats.lognorm(s=sigma, scale=np.exp(mu))
+
+    results = []
+    for ut in rent_roll.unit_types:
+        if ut.count == 0:
+            continue
+
+        annual_rent = ut.monthly_rent * 12
+        min_income = annual_rent / affordability_ratio
+        percentile = dist.cdf(min_income) * 100
+
+        results.append({
+            'unit_type': ut.name,
+            'sqft': ut.sqft,
+            'monthly_rent': ut.monthly_rent,
+            'count': ut.count,
+            'rent_psf': ut.rent_psf,
+            'annual_rent': annual_rent,
+            'min_income_required': min_income,
+            'percentile_required': percentile,
+            'pct_can_afford': 100 - percentile
+        })
+
+    return results
+
+
 def calculate_viability_grid(
     x_param: str,
     y_param: str,
@@ -429,7 +477,7 @@ PARAM_INFO = {
         'category': 'Project',
         'driver': 'Inflation, Cost of Administration, Labour Market',
         'default_range': (0.0, 1.0),
-        'default': 0.35,
+        'default': 0.25,
         'format': '{:.1%}'
     },
     'housing_charge_increase': {
@@ -448,7 +496,7 @@ PARAM_INFO = {
         'category': 'Primary Lender',
         'driver': 'ALM, Cost of Capital, GoC Yield',
         'default_range': (0.0, 0.20),
-        'default': 0.05,
+        'default': 0.048,
         'format': '{:.1%}',
         'precise_input': True
     },
@@ -466,7 +514,7 @@ PARAM_INFO = {
         'category': 'Primary Lender',
         'driver': 'ALM, Cost of Capital, GoC Yield',
         'default_range': (0.0, 1.0),
-        'default': 0.75,
+        'default': 0.80,
         'format': '{:.1%}'
     },
 
@@ -530,7 +578,7 @@ PARAM_INFO = {
         'category': 'Target',
         'driver': 'User-defined minimum annualized return over 25 years',
         'default_range': (0.0, 0.15),
-        'default': 0.0,
+        'default': 0.05,
         'format': '{:.1%}'
     }
 }

@@ -1,0 +1,5902 @@
+[
+  {
+    "timestamp": "2026-01-07T20:41:50.863708",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2664.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:51.064310",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2714.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:51.244662",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2764.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:51.526990",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2814.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:52.573521",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2864.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:52.753591",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2914.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:52.997335",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2964.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:53.570412",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3014.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:53.797902",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3064.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:54.012220",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3114.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:41:55.389054",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3064.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:00.251301",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3014.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:04.768335",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2964.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:06.470506",
+    "description": "Set 1 Bedroom Premium to Middle rate: $3,597",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3597.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:08.359367",
+    "description": "Set 1 Bedroom Premium to Low/Mod rate: $2,264",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 3656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:13.545872",
+    "description": "Set 2 Bedroom Townhouse to Middle rate: $5,306",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 5306.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:47.081098",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 5256.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:47.221251",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 5206.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:47.402849",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 5156.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:47.595344",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 5106.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:47.806093",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 5056.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:48.013251",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 5006.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:48.218975",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4956.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:48.461419",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4906.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:48.891093",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4856.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:49.213003",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4806.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:49.438094",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4756.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:49.695258",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4706.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:50.389899",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4656.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:51.073751",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4606.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:51.669634",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4556.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:52.469635",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4506.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:53.170943",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4456.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:53.977730",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2264.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:56.903642",
+    "description": "Set 1 Bedroom Premium to Middle rate: $3,597",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3597.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:58.322263",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3547.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:58.501511",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3497.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:58.697062",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3447.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:58.905806",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3397.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:59.123062",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3347.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:59.349286",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3297.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:59.563761",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3247.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:42:59.800200",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3197.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:43:00.029554",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3147.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:43:00.552072",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3097.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:43:00.760925",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 3047.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:43:01.015505",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2997.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:43:01.601832",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2947.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4406.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:44:23.293371",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2947.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4456.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-07T20:44:26.930242",
+    "description": "Updated rent roll: Tresah Co-op Housing",
+    "state": {
+      "listings": [
+        {
+          "id": "TRESAH_001",
+          "source": "workbook",
+          "address": "Tresah Co-op Housing",
+          "city": "Victoria",
+          "asking_price": 103000000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": 2025,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:14:14.126213",
+          "listing_status": "active",
+          "price_per_unit": 575418.9944134079,
+          "price_per_sqft": 878.2401091405184,
+          "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+        },
+        {
+          "id": "LISTING_002",
+          "source": "manual",
+          "address": "Tresah Haircut",
+          "city": "Victoria",
+          "asking_price": 87550000.0,
+          "building_sqft": 117280.0,
+          "num_units": 179,
+          "year_built": null,
+          "cap_rate": null,
+          "noi": null,
+          "lot_size": null,
+          "url": "",
+          "scraped_at": "2026-01-07T20:31:34.739952",
+          "listing_status": "active",
+          "price_per_unit": 489106.14525139664,
+          "price_per_sqft": 746.5040927694406,
+          "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+        }
+      ],
+      "rent_rolls": {
+        "TRESAH_001": [
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 483.0,
+            "monthly_rent": 2264.0,
+            "count": 66
+          },
+          {
+            "name": "1 Bedroom Premium",
+            "bedrooms": 1,
+            "sqft": 672.0,
+            "monthly_rent": 2997.0,
+            "count": 77
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 877.0,
+            "monthly_rent": 3656.0,
+            "count": 22
+          },
+          {
+            "name": "2 Bedroom Townhouse",
+            "bedrooms": 2,
+            "sqft": 1026.0,
+            "monthly_rent": 4456.0,
+            "count": 14
+          }
+        ],
+        "LISTING_002": [
+          {
+            "name": "Studio",
+            "bedrooms": 1,
+            "sqft": 450.0,
+            "monthly_rent": 1400.0,
+            "count": 35
+          },
+          {
+            "name": "1 Bedroom",
+            "bedrooms": 1,
+            "sqft": 650.0,
+            "monthly_rent": 1800.0,
+            "count": 71
+          },
+          {
+            "name": "2 Bedroom",
+            "bedrooms": 2,
+            "sqft": 900.0,
+            "monthly_rent": 2400.0,
+            "count": 53
+          },
+          {
+            "name": "3 Bedroom",
+            "bedrooms": 2,
+            "sqft": 1200.0,
+            "monthly_rent": 3000.0,
+            "count": 20
+          }
+        ]
+      },
+      "income_distributions": {
+        "couples": {
+          "median": 90560,
+          "75th_percentile": 143900
+        },
+        "families": {
+          "median": 146270,
+          "75th_percentile": 212240
+        }
+      }
+    }
+  }
+]

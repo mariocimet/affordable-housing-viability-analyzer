@@ -1,0 +1,13 @@
+year,family_type,income_level,income_limit,source
+2024,couples_without_children,median,84780,BC Housing
+2024,couples_without_children,75th_percentile,131950,BC Housing (StatsCan T1FF)
+2024,families_with_children,median,134410,BC Housing
+2024,families_with_children,75th_percentile,191910,BC Housing (StatsCan T1FF)
+2025,couples_without_children,median,85870,BC Housing
+2025,couples_without_children,75th_percentile,136210,BC Housing (StatsCan T1FF)
+2025,families_with_children,median,138770,BC Housing
+2025,families_with_children,75th_percentile,201030,BC Housing (StatsCan T1FF)
+2026,couples_without_children,median,90560,BC Housing
+2026,couples_without_children,75th_percentile,143900,BC Housing (StatsCan T1FF)
+2026,families_with_children,median,146270,BC Housing
+2026,families_with_children,75th_percentile,212240,BC Housing (StatsCan T1FF)

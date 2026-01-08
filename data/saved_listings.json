@@ -1,0 +1,114 @@
+{
+  "listings": [
+    {
+      "id": "TRESAH_001",
+      "source": "workbook",
+      "address": "Tresah Co-op Housing",
+      "city": "Victoria",
+      "asking_price": 103000000.0,
+      "building_sqft": 117280.0,
+      "num_units": 179,
+      "year_built": 2025,
+      "cap_rate": null,
+      "noi": null,
+      "lot_size": null,
+      "url": "",
+      "scraped_at": "2026-01-07T20:14:14.126213",
+      "listing_status": "active",
+      "price_per_unit": 575418.9944134079,
+      "price_per_sqft": 878.2401091405184,
+      "display_name": "Tresah Co-op Housing, Victoria - $103.0M (179 units)"
+    },
+    {
+      "id": "LISTING_002",
+      "source": "manual",
+      "address": "Tresah Haircut",
+      "city": "Victoria",
+      "asking_price": 87550000.0,
+      "building_sqft": 117280.0,
+      "num_units": 179,
+      "year_built": null,
+      "cap_rate": null,
+      "noi": null,
+      "lot_size": null,
+      "url": "",
+      "scraped_at": "2026-01-07T20:31:34.739952",
+      "listing_status": "active",
+      "price_per_unit": 489106.14525139664,
+      "price_per_sqft": 746.5040927694406,
+      "display_name": "Tresah Haircut, Victoria - $87.5M (179 units)"
+    }
+  ],
+  "rent_rolls": {
+    "TRESAH_001": [
+      {
+        "name": "1 Bedroom",
+        "bedrooms": 1,
+        "sqft": 483.0,
+        "monthly_rent": 2264.0,
+        "count": 66
+      },
+      {
+        "name": "1 Bedroom Premium",
+        "bedrooms": 1,
+        "sqft": 672.0,
+        "monthly_rent": 2997.0,
+        "count": 77
+      },
+      {
+        "name": "2 Bedroom",
+        "bedrooms": 2,
+        "sqft": 877.0,
+        "monthly_rent": 3656.0,
+        "count": 22
+      },
+      {
+        "name": "2 Bedroom Townhouse",
+        "bedrooms": 2,
+        "sqft": 1026.0,
+        "monthly_rent": 4456.0,
+        "count": 14
+      }
+    ],
+    "LISTING_002": [
+      {
+        "name": "Studio",
+        "bedrooms": 1,
+        "sqft": 450.0,
+        "monthly_rent": 1400.0,
+        "count": 35
+      },
+      {
+        "name": "1 Bedroom",
+        "bedrooms": 1,
+        "sqft": 650.0,
+        "monthly_rent": 1800.0,
+        "count": 71
+      },
+      {
+        "name": "2 Bedroom",
+        "bedrooms": 2,
+        "sqft": 900.0,
+        "monthly_rent": 2400.0,
+        "count": 53
+      },
+      {
+        "name": "3 Bedroom",
+        "bedrooms": 2,
+        "sqft": 1200.0,
+        "monthly_rent": 3000.0,
+        "count": 20
+      }
+    ]
+  },
+  "income_distributions": {
+    "couples": {
+      "median": 90560,
+      "75th_percentile": 143900
+    },
+    "families": {
+      "median": 146270,
+      "75th_percentile": 212240
+    }
+  }
+}

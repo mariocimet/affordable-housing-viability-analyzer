@@ -52,7 +52,7 @@
         "name": "1 Bedroom Premium",
         "bedrooms": 1,
         "sqft": 672.0,
-        "monthly_rent": 2997.0,
+        "monthly_rent": 2264.0,
         "count": 77
       },
       {
@@ -66,7 +66,7 @@
         "name": "2 Bedroom Townhouse",
         "bedrooms": 2,
         "sqft": 1026.0,
-        "monthly_rent": 4456.0,
+        "monthly_rent": 3656.0,
         "count": 14
       }
     ],
@@ -75,28 +75,28 @@
         "name": "Studio",
         "bedrooms": 1,
         "sqft": 450.0,
-        "monthly_rent": 1400.0,
+        "monthly_rent": 1914.0,
         "count": 35
       },
       {
         "name": "1 Bedroom",
         "bedrooms": 1,
         "sqft": 650.0,
-        "monthly_rent": 1800.0,
+        "monthly_rent": 2414.0,
         "count": 71
       },
       {
         "name": "2 Bedroom",
         "bedrooms": 2,
         "sqft": 900.0,
-        "monthly_rent": 2400.0,
+        "monthly_rent": 3256.0,
         "count": 53
       },
       {
         "name": "3 Bedroom",
         "bedrooms": 2,
-        "sqft": 1200.0,
-        "monthly_rent": 3000.0,
+        "sqft": 950.0,
+        "monthly_rent": 4006.0,
         "count": 20
       }
     ]

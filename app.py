@@ -291,6 +291,81 @@ TRESAH_RENT_ROLL = [
 
 
 # ============================================
+# PER-LISTING SCENARIO PARAMETERS
+# ============================================
+
+DEFAULT_SCENARIO_PARAMS = {
+    'opex_ratio': 0.25,
+    'vacancy_rate': 0.03,
+    'bad_debt': 0.01,
+    'interest_rate_senior': 0.048,
+    'max_ltv': 0.80,
+    'inflation_assumption': 0.02,
+    'equity_return_required': 0.05,
+    'haircut_pct': 0.0,
+    'rate_mode': 'moderate',
+    'custom_rates': {
+        'period_1': 2.5,
+        'period_2': 2.5,
+        'period_3': 2.25,
+        'period_4': 2.0,
+        'period_5': 2.0,
+    }
+}
+
+RATE_PRESETS = {
+    'conservative': {'period_1': 2.0, 'period_2': 2.0, 'period_3': 2.0, 'period_4': 2.0, 'period_5': 2.0},
+    'moderate': {'period_1': 2.5, 'period_2': 2.5, 'period_3': 2.25, 'period_4': 2.0, 'period_5': 2.0},
+    'aggressive': {'period_1': 3.0, 'period_2': 2.75, 'period_3': 2.25, 'period_4': 2.0, 'period_5': 2.0},
+}
+
+
+def get_listing_params(listing_id: str) -> dict:
+    """Get scenario parameters for a listing, initializing with defaults if needed."""
+    key = f'scenario_params_{listing_id}'
+    if key not in st.session_state:
+        st.session_state[key] = DEFAULT_SCENARIO_PARAMS.copy()
+        st.session_state[key]['custom_rates'] = DEFAULT_SCENARIO_PARAMS['custom_rates'].copy()
+    return st.session_state[key]
+
+
+def set_listing_params(listing_id: str, params: dict):
+    """Update scenario parameters for a listing."""
+    key = f'scenario_params_{listing_id}'
+    st.session_state[key] = params
+
+
+def build_rate_schedule(custom_rates: dict) -> list:
+    """Build 25-year rate schedule from 5-period custom rates."""
+    return (
+        [custom_rates['period_1'] / 100] * 5 +
+        [custom_rates['period_2'] / 100] * 5 +
+        [custom_rates['period_3'] / 100] * 5 +
+        [custom_rates['period_4'] / 100] * 5 +
+        [custom_rates['period_5'] / 100] * 5
+    )
+
+
+def build_fixed_params(scenario_params: dict) -> dict:
+    """Build the fixed_params dict from scenario parameters."""
+    rate_schedule = build_rate_schedule(scenario_params['custom_rates'])
+    return {
+        'opex_ratio': scenario_params['opex_ratio'],
+        'housing_charge_increase': rate_schedule[0],
+        'interest_rate_senior': scenario_params['interest_rate_senior'],
+        'interest_rate_secondary': PARAM_INFO['interest_rate_secondary']['default'],
+        'max_ltv': scenario_params['max_ltv'],
+        'risk_free_rate': PARAM_INFO['risk_free_rate']['default'],
+        'inflation_assumption': scenario_params['inflation_assumption'],
+        'affordability_ratio': 0.30,
+        'target_percentile': 50,
+        'equity_return_required': scenario_params['equity_return_required'],
+        'acquisition_cost_psf': PARAM_INFO['acquisition_cost_psf']['default'],
+        'rent_psf': PARAM_INFO['rent_psf']['default'],
+    }
+
+
+# ============================================
 # PERSISTENCE - SAVE/LOAD WITH UNDO HISTORY
 # ============================================
 
@@ -545,152 +620,26 @@ def get_income_for_unit_type(sqft: float, year: int = 2026, income_level: str = 
 
 
 # ============================================
-# SIDEBAR
+# INITIALIZE LISTINGS
 # ============================================
 
-with st.sidebar:
-    # ============================================
-    # Add Listing Section
-    # ============================================
-    st.header("Add Listing")
-
-    if 'listings' not in st.session_state:
-        # Try to load saved listings first
-        saved_data = load_listings_from_file()
-        if saved_data and saved_data['listings']:
-            st.session_state.listings = saved_data['listings']
-            # Restore rent rolls
-            for listing_id, rent_roll in saved_data['rent_rolls'].items():
-                st.session_state[f'rent_roll_{listing_id}'] = rent_roll
-            # Restore income distributions
-            if saved_data.get('income_distributions', {}).get('couples'):
-                st.session_state.income_dist_couples = saved_data['income_distributions']['couples']
-            if saved_data.get('income_distributions', {}).get('families'):
-                st.session_state.income_dist_families = saved_data['income_distributions']['families']
-        else:
-            # Initialize with Tresah as default
-            st.session_state.listings = [create_tresah_listing()]
-            st.session_state['rent_roll_TRESAH_001'] = TRESAH_RENT_ROLL
-
-    with st.form("listing_form"):
-        ml_address = st.text_input("Address", placeholder="123 Main St")
-        ml_city = st.text_input("City", placeholder="Vancouver")
-        ml_price = st.number_input("Asking Price ($)", min_value=100000, max_value=500000000, value=5000000, step=100000)
-        ml_sqft = st.number_input("Building Sq Ft", min_value=0, max_value=1000000, value=0, step=1000, help="Leave 0 to estimate from units")
-        ml_units = st.number_input("Number of Units", min_value=1, max_value=1000, value=20, step=1)
-
-        submitted = st.form_submit_button("Analyze", type="primary", use_container_width=True)
-        if submitted:
-            if ml_address and ml_city:
-                new_id = f"LISTING_{len(st.session_state.listings) + 1:03d}"
-                new_listing = MultifamilyListing(
-                    id=new_id,
-                    source='manual',
-                    address=ml_address,
-                    city=ml_city,
-                    asking_price=float(ml_price),
-                    building_sqft=float(ml_sqft) if ml_sqft > 0 else None,
-                    num_units=int(ml_units),
-                    year_built=None,
-                    cap_rate=None,
-                    url='',
-                )
-                st.session_state.listings.append(new_listing)
-                save_with_history(f"Added listing: {ml_address}")
-                # Select the new listing in the dropdown
-                st.session_state['_select_listing'] = f"{ml_address} - {ml_city}"
-                st.rerun()
-            else:
-                st.error("Address and City are required")
-
-    # Undo button
-    history = load_history()
-    history_count = len(history)
-
-    if st.button("↶ Undo", use_container_width=True, disabled=(history_count < 2)):
-        success, desc = undo_last_change()
-        if success:
-            # Load the restored state
-            saved_data = load_listings_from_file()
-            if saved_data:
-                apply_state(saved_data)
-            st.rerun()
-
-    st.caption(f"History: {history_count} state{'s' if history_count != 1 else ''} saved")
-
-    st.divider()
-
-    # ============================================
-    # Model Parameters
-    # ============================================
-    st.header("Model Parameters")
-    st.caption("Adjust financing, economic, and affordability assumptions. Changes apply to all analyses.")
-
-    st.subheader("Assumptions")
-    opex_ratio = create_param_input('opex_ratio', 'sidebar_')
-
-    st.subheader("Lender")
-    interest_rate_senior = create_param_input('interest_rate_senior', 'sidebar_')
-    max_ltv = create_param_input('max_ltv', 'sidebar_')
-
-    st.subheader("Economic")
-    inflation_assumption = create_param_input('inflation_assumption', 'sidebar_')
-    st.caption("Income thresholds use BC Housing data (StatsCan T1 Family File)")
-
-    st.subheader("Target")
-    equity_return_required = create_param_input('equity_return_required', 'sidebar_')
-
-    st.subheader("Housing Charge Scenario")
-    scenario_descriptions = {
-        'conservative': 'Conservative (2% flat)',
-        'moderate': 'Moderate (2.5% → 2%)',
-        'aggressive': 'Aggressive (3% → 2%)'
-    }
-    selected_scenario = st.selectbox(
-        "Rate Schedule",
-        options=list(HOUSING_CHARGE_SCENARIOS.keys()),
-        format_func=lambda x: scenario_descriptions[x],
-        index=1,  # Default to 'moderate'
-        key="sidebar_scenario",
-        help="Housing charge increase rates over 25 years. Rates typically moderate over time."
-    )
-    # Show the rate schedule
-    rates = HOUSING_CHARGE_SCENARIOS[selected_scenario]
-    st.caption(f"Yrs 1-5: {rates[0]:.1%} | Yrs 6-10: {rates[5]:.1%} | Yrs 11-15: {rates[10]:.1%} | Yrs 16-25: {rates[15]:.1%}")
-
-
-# ============================================
-# BUILD PARAMS DICT
-# ============================================
-
-# Affordability parameters (fixed - income thresholds are managed in Income Distributions tab)
-affordability_ratio = 0.30  # 30% rent burden threshold
-target_percentile = 50  # Median income
-
-# Fixed parameters for viability calculations (not from listings)
-fixed_params = {
-    'opex_ratio': opex_ratio,
-    'housing_charge_increase': HOUSING_CHARGE_SCENARIOS[selected_scenario][0],  # Year 1 rate for display
-    'interest_rate_senior': interest_rate_senior,
-    'interest_rate_secondary': PARAM_INFO['interest_rate_secondary']['default'],
-    'max_ltv': max_ltv,
-    'risk_free_rate': PARAM_INFO['risk_free_rate']['default'],
-    'inflation_assumption': inflation_assumption,
-    'affordability_ratio': affordability_ratio,
-    'target_percentile': target_percentile,
-    'equity_return_required': equity_return_required,
-    # Placeholders - will be overwritten per listing
-    'acquisition_cost_psf': PARAM_INFO['acquisition_cost_psf']['default'],
-    'rent_psf': PARAM_INFO['rent_psf']['default'],
-    # median_income is looked up per listing city
-}
-
-# Rate schedule for the selected scenario
-rate_schedule = HOUSING_CHARGE_SCENARIOS[selected_scenario]
-
-assumptions = {
-    'opex_ratio': opex_ratio
-}
+if 'listings' not in st.session_state:
+    # Try to load saved listings first
+    saved_data = load_listings_from_file()
+    if saved_data and saved_data['listings']:
+        st.session_state.listings = saved_data['listings']
+        # Restore rent rolls
+        for listing_id, rent_roll in saved_data['rent_rolls'].items():
+            st.session_state[f'rent_roll_{listing_id}'] = rent_roll
+        # Restore income distributions
+        if saved_data.get('income_distributions', {}).get('couples'):
+            st.session_state.income_dist_couples = saved_data['income_distributions']['couples']
+        if saved_data.get('income_distributions', {}).get('families'):
+            st.session_state.income_dist_families = saved_data['income_distributions']['families']
+    else:
+        # Initialize with Tresah as default
+        st.session_state.listings = [create_tresah_listing()]
+        st.session_state['rent_roll_TRESAH_001'] = TRESAH_RENT_ROLL
 
 
 # ============================================
@@ -896,6 +845,18 @@ with tab_income:
         "and housing charges increase by the selected rate schedule."
     )
 
+    # Animation uses default parameters (or from first listing if available)
+    anim_inflation = DEFAULT_SCENARIO_PARAMS['inflation_assumption']
+    anim_rate_schedule = build_rate_schedule(DEFAULT_SCENARIO_PARAMS['custom_rates'])
+    affordability_ratio = 0.30
+
+    # If there's a selected listing in the viability tab, use its parameters
+    if 'listings' in st.session_state and st.session_state.listings:
+        first_listing = st.session_state.listings[0]
+        first_params = get_listing_params(first_listing.id)
+        anim_inflation = first_params['inflation_assumption']
+        anim_rate_schedule = build_rate_schedule(first_params['custom_rates'])
+
     # Get rent roll data from session state if available
     animation_rent = None
     animation_sqft = 700  # default to families
@@ -966,11 +927,11 @@ with tab_income:
     # Rent grows by housing charge schedule
     rent_growth = 1.0
     for y in range(year_slider):
-        rent_growth *= (1 + rate_schedule[min(y, len(rate_schedule) - 1)])
+        rent_growth *= (1 + anim_rate_schedule[min(y, len(anim_rate_schedule) - 1)])
     annual_rent_year_n = annual_rent_year0 * rent_growth
 
     # Income grows by inflation
-    income_growth = (1 + inflation_assumption) ** year_slider
+    income_growth = (1 + anim_inflation) ** year_slider
     median_year_n = anim_median * income_growth
     p75_year_n = anim_p75 * income_growth
 
@@ -1010,10 +971,10 @@ with tab_income:
             # Calculate values for this year
             rent_growth = 1.0
             for y in range(year):
-                rent_growth *= (1 + rate_schedule[min(y, len(rate_schedule) - 1)])
+                rent_growth *= (1 + anim_rate_schedule[min(y, len(anim_rate_schedule) - 1)])
             annual_rent = annual_rent_year0 * rent_growth
 
-            income_growth = (1 + inflation_assumption) ** year
+            income_growth = (1 + anim_inflation) ** year
             median_y = anim_median * income_growth
             p75_y = anim_p75 * income_growth
 
@@ -1036,10 +997,47 @@ with tab_income:
 # TAB 1: PROJECT VIABILITY
 # ============================================
 with tab_viability:
+    # ---- Add Listing Section (Collapsible) ----
+    with st.expander("Add New Listing", expanded=False):
+        add_cols = st.columns([2, 1.5, 1.5, 1, 1, 1])
+        with add_cols[0]:
+            ml_address = st.text_input("Address", placeholder="123 Main St", key="add_address")
+        with add_cols[1]:
+            ml_city = st.text_input("City", placeholder="Vancouver", key="add_city")
+        with add_cols[2]:
+            ml_price = st.number_input("Asking Price ($)", min_value=100000, max_value=500000000, value=5000000, step=100000, key="add_price")
+        with add_cols[3]:
+            ml_sqft = st.number_input("Sq Ft", min_value=0, max_value=1000000, value=0, step=1000, help="Leave 0 to estimate from units", key="add_sqft")
+        with add_cols[4]:
+            ml_units = st.number_input("Units", min_value=1, max_value=1000, value=20, step=1, key="add_units")
+        with add_cols[5]:
+            st.write("")  # Spacer
+            if st.button("Add Listing", type="primary", use_container_width=True):
+                if ml_address and ml_city:
+                    new_id = f"LISTING_{len(st.session_state.listings) + 1:03d}"
+                    new_listing = MultifamilyListing(
+                        id=new_id,
+                        source='manual',
+                        address=ml_address,
+                        city=ml_city,
+                        asking_price=float(ml_price),
+                        building_sqft=float(ml_sqft) if ml_sqft > 0 else None,
+                        num_units=int(ml_units),
+                        year_built=None,
+                        cap_rate=None,
+                        url='',
+                    )
+                    st.session_state.listings.append(new_listing)
+                    save_with_history(f"Added listing: {ml_address}")
+                    st.session_state['_select_listing'] = f"{ml_address} - {ml_city}"
+                    st.rerun()
+                else:
+                    st.error("Address and City are required")
+
     if not st.session_state.listings:
-        st.info("No listings loaded. Upload a CSV or load sample data from the sidebar.")
+        st.info("No listings loaded. Add a listing above to get started.")
     else:
-        # Project selector
+        # Project selector row
         st.subheader("Select Project")
         listing_options = {l.display_name: l for l in st.session_state.listings}
         option_list = list(listing_options.keys())
@@ -1050,7 +1048,11 @@ with tab_viability:
             if target in option_list:
                 st.session_state['deep_dive_select'] = target
 
-        select_col, delete_col = st.columns([4, 1])
+        # Undo history
+        history = load_history()
+        history_count = len(history)
+
+        select_col, delete_col, undo_col = st.columns([4, 0.8, 0.8])
         with select_col:
             selected_name = st.selectbox(
                 "Choose a listing to analyze:",
@@ -1067,9 +1069,22 @@ with tab_viability:
                     ]
                     save_with_history(f"Deleted listing: {listing_to_delete.address}")
                     st.rerun()
+        with undo_col:
+            st.write("")  # Spacer for alignment
+            if st.button("Undo", type="secondary", use_container_width=True, disabled=(history_count < 2)):
+                success, desc = undo_last_change()
+                if success:
+                    saved_data = load_listings_from_file()
+                    if saved_data:
+                        apply_state(saved_data)
+                    st.rerun()
 
         if selected_name:
             listing = listing_options[selected_name]
+
+            # Get per-listing scenario parameters
+            scenario_params = get_listing_params(listing.id)
+            assumptions = {'opex_ratio': scenario_params['opex_ratio']}
 
             # Get params for this listing
             params = listing_to_params(listing, assumptions)
@@ -1090,7 +1105,7 @@ with tab_viability:
             with detail_cols[3]:
                 new_units = st.number_input("Units", value=int(listing.num_units or 20), min_value=1, max_value=1000, step=1, key=f"ld_units_{listing.id}_v{wv}")
             with detail_cols[4]:
-                new_sqft = st.number_input("Sq Ft", value=int(listing.building_sqft or 0), min_value=0, max_value=1000000, step=1000, key=f"ld_sqft_{listing.id}_v{wv}")
+                new_sqft = st.number_input("Residential Sq Ft", value=int(listing.building_sqft or 0), min_value=0, max_value=1000000, step=1000, key=f"ld_sqft_{listing.id}_v{wv}")
             with detail_cols[5]:
                 new_year = st.number_input("Year", value=int(listing.year_built or 2000), min_value=1900, max_value=2030, step=1, key=f"ld_year_{listing.id}_v{wv}")
 
@@ -1126,6 +1141,167 @@ with tab_viability:
                 save_with_history(f"Updated listing details: {new_address}")
                 # Refresh params with new listing data
                 params = listing_to_params(listing, assumptions)
+
+            # ---- Scenario Parameters ----
+            st.divider()
+            st.subheader("Scenario Parameters")
+
+            import altair as alt
+
+            # ============================================
+            # 1. ACQUISITION - Starting constraint
+            # ============================================
+            st.markdown("**Acquisition**")
+            st.caption("Model purchase price negotiation. The effective price drives all downstream calculations.")
+
+            haircut_pct = scenario_params.get('haircut_pct', 0.0)
+
+            new_haircut = st.slider(
+                "Haircut %",
+                min_value=0.0, max_value=50.0,
+                value=haircut_pct,
+                step=1.0, format="%.0f%%",
+                key=f"haircut_{listing.id}_v{wv}",
+            )
+            if new_haircut != haircut_pct:
+                scenario_params['haircut_pct'] = new_haircut
+                haircut_pct = new_haircut
+
+            effective_price = listing.asking_price * (1 - haircut_pct / 100)
+            price_reduction = listing.asking_price - effective_price
+
+            acq_metrics = st.columns(3)
+            with acq_metrics[0]:
+                st.metric("Asking Price", f"${listing.asking_price:,.0f}")
+            with acq_metrics[1]:
+                st.metric("Effective Price", f"${effective_price:,.0f}",
+                         delta=f"-${price_reduction:,.0f}" if price_reduction > 0 else None,
+                         delta_color="normal" if price_reduction > 0 else "off")
+            with acq_metrics[2]:
+                if params.get('building_sqft'):
+                    effective_psf = effective_price / params['building_sqft']
+                    st.metric("Effective $/SqFt", f"${effective_psf:.0f}")
+                else:
+                    st.metric("Effective $/SqFt", "N/A")
+
+            # ============================================
+            # 2. CAPITAL STRUCTURE - Financing and target return
+            # ============================================
+            st.markdown("**Capital Structure**")
+            st.caption("Debt/equity split, cost of capital, and required return on equity.")
+
+            cap_cols = st.columns(3)
+            with cap_cols[0]:
+                new_ltv = st.number_input(
+                    "LTV (%)",
+                    min_value=50.0, max_value=95.0,
+                    value=scenario_params['max_ltv'] * 100,
+                    step=1.0, format="%.0f",
+                    key=f"ltv_{listing.id}_v{wv}",
+                    help="Loan-to-value ratio. Determines debt vs equity split."
+                ) / 100
+
+            with cap_cols[1]:
+                new_interest = st.number_input(
+                    "Interest Rate (%)",
+                    min_value=2.0, max_value=10.0,
+                    value=scenario_params['interest_rate_senior'] * 100,
+                    step=0.1, format="%.2f",
+                    key=f"interest_{listing.id}_v{wv}",
+                    help="Senior debt interest rate (annual)."
+                ) / 100
+
+            with cap_cols[2]:
+                new_target_return = st.number_input(
+                    "Target IRR (%)",
+                    min_value=0.0, max_value=15.0,
+                    value=scenario_params['equity_return_required'] * 100,
+                    step=0.5, format="%.1f",
+                    key=f"target_return_{listing.id}_v{wv}",
+                    help="Minimum acceptable 25-year IRR on equity. Project viable if DSCR >= 1.0 AND meets target."
+                ) / 100
+
+            # Show resulting capital stack
+            debt_amount = effective_price * new_ltv
+            equity_amount = effective_price * (1 - new_ltv)
+            st.markdown(f"""
+            | | Amount | % |
+            |---|---:|---:|
+            | **Debt** | ${debt_amount:,.0f} | {new_ltv:.0%} |
+            | **Equity** | ${equity_amount:,.0f} | {1-new_ltv:.0%} |
+            | **Total** | ${effective_price:,.0f} | 100% |
+            """)
+
+            # ============================================
+            # 3. OPERATIONS - How it performs
+            # ============================================
+            st.markdown("**Operations**")
+            st.caption("Vacancy, bad debt, and operating expenses. Subtracted from gross income.")
+
+            ops_cols = st.columns(3)
+            with ops_cols[0]:
+                new_vacancy = st.number_input(
+                    "Vacancy Rate (%)",
+                    min_value=0.0, max_value=20.0,
+                    value=scenario_params.get('vacancy_rate', 0.03) * 100,
+                    step=0.5, format="%.1f",
+                    key=f"vacancy_{listing.id}_v{wv}",
+                    help="Expected vacancy as % of gross income."
+                ) / 100
+
+            with ops_cols[1]:
+                new_bad_debt = st.number_input(
+                    "Bad Debt (%)",
+                    min_value=0.0, max_value=10.0,
+                    value=scenario_params.get('bad_debt', 0.01) * 100,
+                    step=0.5, format="%.1f",
+                    key=f"bad_debt_{listing.id}_v{wv}",
+                    help="Expected bad debt/collection loss as % of gross income."
+                ) / 100
+
+            with ops_cols[2]:
+                new_opex = st.number_input(
+                    "OpEx Ratio (%)",
+                    min_value=15.0, max_value=55.0,
+                    value=scenario_params['opex_ratio'] * 100,
+                    step=1.0, format="%.0f",
+                    key=f"opex_{listing.id}_v{wv}",
+                    help="Operating expenses as % of effective gross income."
+                ) / 100
+
+            # Update scenario params if changed
+            if (new_interest != scenario_params['interest_rate_senior'] or
+                new_ltv != scenario_params['max_ltv'] or
+                new_opex != scenario_params['opex_ratio'] or
+                new_vacancy != scenario_params.get('vacancy_rate', 0.03) or
+                new_bad_debt != scenario_params.get('bad_debt', 0.01) or
+                new_target_return != scenario_params['equity_return_required']):
+                scenario_params['interest_rate_senior'] = new_interest
+                scenario_params['max_ltv'] = new_ltv
+                scenario_params['opex_ratio'] = new_opex
+                scenario_params['vacancy_rate'] = new_vacancy
+                scenario_params['bad_debt'] = new_bad_debt
+                scenario_params['equity_return_required'] = new_target_return
+                assumptions['opex_ratio'] = new_opex
+
+            # Apply scenario params to calculations
+            rate_schedule = build_rate_schedule(scenario_params['custom_rates'])
+            fixed_params = build_fixed_params(scenario_params)
+
+            # Extract commonly used params for convenience
+            opex_ratio = fixed_params['opex_ratio']
+            vacancy_rate = scenario_params.get('vacancy_rate', 0.03)
+            bad_debt = scenario_params.get('bad_debt', 0.01)
+            interest_rate_senior = fixed_params['interest_rate_senior']
+            max_ltv = fixed_params['max_ltv']
+            inflation_assumption = fixed_params['inflation_assumption']
+            equity_return_required = fixed_params['equity_return_required']
+
+            # Apply haircut to params
+            if params.get('acquisition_cost_psf') is not None and params.get('building_sqft'):
+                params['acquisition_cost_psf'] = effective_price / params['building_sqft']
+                params['effective_price'] = effective_price
+                params['haircut_pct'] = haircut_pct
 
             # Check if we can analyze
             if params.get('acquisition_cost_psf') is None:
@@ -1244,63 +1420,133 @@ with tab_viability:
                 if rent_roll.total_units > 0:
                     building_sqft = rent_roll.total_sqft
 
-                # Show totals
+                # Show totals - calculate Effective Gross Income
+                gross_income = rent_roll.total_annual_revenue
+                vacancy_loss = gross_income * vacancy_rate
+                bad_debt_loss = gross_income * bad_debt
+                effective_gross_income = gross_income - vacancy_loss - bad_debt_loss
+                opex_amount = effective_gross_income * opex_ratio
+                noi_from_roll = effective_gross_income - opex_amount
+
                 total_cols = st.columns(5)
                 with total_cols[0]:
                     st.metric("Total Units", rent_roll.total_units)
                 with total_cols[1]:
                     st.metric("Total Sq Ft", f"{rent_roll.total_sqft:,.0f}")
                 with total_cols[2]:
-                    st.metric("Annual Revenue", f"${rent_roll.total_annual_revenue:,.0f}")
+                    st.metric("Gross Income", f"${gross_income:,.0f}")
                 with total_cols[3]:
-                    st.metric("Avg Rent/SqFt", f"${rent_roll.weighted_avg_rent_psf:.2f}")
+                    st.metric("Effective Gross", f"${effective_gross_income:,.0f}",
+                             delta=f"-${vacancy_loss + bad_debt_loss:,.0f}",
+                             delta_color="off")
                 with total_cols[4]:
-                    noi_from_roll = rent_roll.total_annual_revenue * (1 - opex_ratio)
                     st.metric("NOI", f"${noi_from_roll:,.0f}")
 
-                # Detailed rent roll calculations
-                with st.expander("View Rent Roll Calculations"):
-                    st.markdown("**Revenue by Unit Type:**")
-                    if rent_roll.total_units > 0:
-                        rr_calc_data = []
-                        for ut in rent_roll.unit_types:
-                            if ut.count > 0:
-                                annual_rev = ut.monthly_rent * ut.count * 12
-                                total_sqft = ut.sqft * ut.count
-                                rr_calc_data.append({
-                                    'Unit Type': ut.name,
-                                    'Beds': ut.bedrooms,
-                                    'Sq Ft/Unit': f"{ut.sqft:,.0f}",
-                                    'Monthly Rent': f"${ut.monthly_rent:,.0f}",
-                                    '# Units': ut.count,
-                                    'Total Sq Ft': f"{total_sqft:,.0f}",
-                                    'Monthly Revenue': f"${ut.monthly_rent * ut.count:,.0f}",
-                                    'Annual Revenue': f"${annual_rev:,.0f}",
-                                    'Rent/SqFt': f"${ut.monthly_rent / ut.sqft:.2f}",
-                                })
-                        rr_calc_df = pd.DataFrame(rr_calc_data)
-                        st.dataframe(rr_calc_df, use_container_width=True, hide_index=True)
+                st.divider()
 
-                        st.markdown("**Totals Calculation:**")
-                        totals_data = [
-                            ("Total Units", f"{rent_roll.total_units}", "Sum of # Units"),
-                            ("Total Sq Ft", f"{rent_roll.total_sqft:,.0f}", "Sum of (Sq Ft/Unit × # Units)"),
-                            ("Gross Annual Revenue", f"${rent_roll.total_annual_revenue:,.0f}", "Sum of Annual Revenue"),
-                            ("Weighted Avg Rent/SqFt", f"${rent_roll.weighted_avg_rent_psf:.2f}", "Total Revenue ÷ Total SqFt ÷ 12"),
-                            ("Avg Unit Size", f"{rent_roll.avg_unit_sqft:,.0f} sqft", "Total SqFt ÷ Total Units"),
-                            ("Operating Expenses", f"${rent_roll.total_annual_revenue * opex_ratio:,.0f}", f"Revenue × {opex_ratio:.0%}"),
-                            ("Net Operating Income", f"${noi_from_roll:,.0f}", f"Revenue × {(1-opex_ratio):.0%}"),
-                        ]
-                        totals_df = pd.DataFrame(totals_data, columns=["Metric", "Value", "Calculation"])
-                        st.dataframe(totals_df, use_container_width=True, hide_index=True)
-                    else:
-                        st.info("Add units to the rent roll to see calculations.")
+                # ---- Housing Charge Increase Schedule ----
+                st.subheader("Housing Charge Increase Schedule")
+                st.caption("Annual rent increases over 25 years. Select a preset or customize by period.")
+
+                # Preset buttons row
+                preset_cols = st.columns([1, 1, 1, 1, 2])
+                with preset_cols[0]:
+                    if st.button("Conservative", key=f"rate_cons_{listing.id}", use_container_width=True,
+                                type="primary" if scenario_params['rate_mode'] == 'conservative' else "secondary"):
+                        scenario_params['rate_mode'] = 'conservative'
+                        scenario_params['custom_rates'] = RATE_PRESETS['conservative'].copy()
+                        st.rerun()
+                with preset_cols[1]:
+                    if st.button("Moderate", key=f"rate_mod_{listing.id}", use_container_width=True,
+                                type="primary" if scenario_params['rate_mode'] == 'moderate' else "secondary"):
+                        scenario_params['rate_mode'] = 'moderate'
+                        scenario_params['custom_rates'] = RATE_PRESETS['moderate'].copy()
+                        st.rerun()
+                with preset_cols[2]:
+                    if st.button("Aggressive", key=f"rate_agg_{listing.id}", use_container_width=True,
+                                type="primary" if scenario_params['rate_mode'] == 'aggressive' else "secondary"):
+                        scenario_params['rate_mode'] = 'aggressive'
+                        scenario_params['custom_rates'] = RATE_PRESETS['aggressive'].copy()
+                        st.rerun()
+                with preset_cols[3]:
+                    if st.button("Custom", key=f"rate_custom_{listing.id}", use_container_width=True,
+                                type="primary" if scenario_params['rate_mode'] == 'custom' else "secondary"):
+                        scenario_params['rate_mode'] = 'custom'
+                        st.rerun()
+
+                # Build rate schedule
+                is_custom_rate = scenario_params['rate_mode'] == 'custom'
+                rate_schedule = build_rate_schedule(scenario_params['custom_rates'])
+
+                # Period sliders (only in custom mode) and chart
+                if is_custom_rate:
+                    schedule_cols = st.columns([2, 3])
+                    with schedule_cols[0]:
+                        periods = ['period_1', 'period_2', 'period_3', 'period_4', 'period_5']
+                        period_labels = ['Years 1-5', 'Years 6-10', 'Years 11-15', 'Years 16-20', 'Years 21-25']
+
+                        for period, label in zip(periods, period_labels):
+                            new_rate = st.slider(
+                                label,
+                                min_value=0.0, max_value=5.0,
+                                value=scenario_params['custom_rates'][period],
+                                step=0.25, format="%.2f%%",
+                                key=f"rate_{period}_{listing.id}_v{wv}",
+                                label_visibility="visible"
+                            )
+                            if new_rate != scenario_params['custom_rates'][period]:
+                                scenario_params['custom_rates'][period] = new_rate
+                                rate_schedule = build_rate_schedule(scenario_params['custom_rates'])
+                    chart_col = schedule_cols[1]
+                else:
+                    chart_col = st.container()
+
+                with chart_col:
+                    rate_chart_data = pd.DataFrame({
+                        'Year': list(range(1, 26)),
+                        'Annual Increase (%)': [r * 100 for r in rate_schedule]
+                    })
+
+                    cumulative = [100]
+                    for rate in rate_schedule:
+                        cumulative.append(cumulative[-1] * (1 + rate))
+                    rate_chart_data['Cumulative Rent Index'] = cumulative[1:]
+
+                    base = alt.Chart(rate_chart_data).encode(x=alt.X('Year:Q', scale=alt.Scale(domain=[1, 25]), title='Year'))
+                    bars = base.mark_bar(color='#4CAF50', opacity=0.7).encode(
+                        y=alt.Y('Annual Increase (%):Q', scale=alt.Scale(domain=[0, 5]), title='Annual Rate (%)')
+                    )
+                    line = base.mark_line(color='#1976D2', strokeWidth=2).encode(
+                        y=alt.Y('Cumulative Rent Index:Q', scale=alt.Scale(domain=[100, 220]), title='Cumulative (100=Year 0)')
+                    )
+                    chart = alt.layer(bars, line).resolve_scale(y='independent').properties(height=200)
+                    st.altair_chart(chart, use_container_width=True)
+
+                    final_rent_index = cumulative[-1]
+                    avg_rate = sum(rate_schedule) / len(rate_schedule) * 100
+                    st.caption(f"25-year growth: **{final_rent_index:.0f}%** of Year 0 rent | Avg: **{avg_rate:.2f}%**/yr")
+
+                # Income inflation
+                st.markdown("<small>**Income inflation:** Annual growth rate for household incomes.</small>", unsafe_allow_html=True)
+                infl_cols = st.columns([1, 3])
+                with infl_cols[0]:
+                    new_inflation = st.slider(
+                        "Income Inflation",
+                        min_value=-2.0, max_value=6.0,
+                        value=scenario_params['inflation_assumption'] * 100,
+                        step=0.25, format="%.2f%%",
+                        key=f"inflation_{listing.id}_v{wv}"
+                    ) / 100
+
+                # Update inflation in scenario params
+                if new_inflation != scenario_params['inflation_assumption']:
+                    scenario_params['inflation_assumption'] = new_inflation
 
                 st.divider()
 
                 # ---- Affordability by Unit Type ----
                 st.subheader("Affordability by Unit Type")
-                st.caption("Income thresholds from Income Distributions tab (based on BC Housing data)")
+                st.caption("Edit $/SqFt or burden to update rents. All values are linked.")
 
                 if rent_roll.total_units == 0:
                     st.info("Add units to the rent roll to see affordability analysis.")
@@ -1309,119 +1555,135 @@ with tab_viability:
                     couples_income = st.session_state.get('income_dist_couples', BC_HOUSING_DEFAULTS['couples_without_children'])
                     families_income = st.session_state.get('income_dist_families', BC_HOUSING_DEFAULTS['families_with_children'])
 
-                    # Calculate affordability for each unit type
-                    affordability_rows = []
-                    for ut in rent_roll.unit_types:
-                        if ut.count == 0:
+                    # Header row for affordability table
+                    aff_header = st.columns([2, 0.6, 0.8, 1.2, 1, 0.8, 1.2, 1.2])
+                    with aff_header[0]:
+                        st.markdown("**Unit Type**")
+                    with aff_header[1]:
+                        st.markdown("**Beds**")
+                    with aff_header[2]:
+                        st.markdown("**Sq Ft**")
+                    with aff_header[3]:
+                        st.markdown("**Rent**")
+                    with aff_header[4]:
+                        st.markdown("**$/SqFt**")
+                    with aff_header[5]:
+                        st.markdown("**Units**")
+                    with aff_header[6]:
+                        st.markdown("**L/M Burden**")
+                    with aff_header[7]:
+                        st.markdown("**Mid Burden**")
+
+                    # Build mapping from rent_roll index to display row
+                    rent_roll_data = st.session_state[rent_roll_key]
+                    affordability_summary = {'total': 0, 'lm_affordable': 0, 'mid_affordable': 0}
+
+                    for i, ut_data in enumerate(rent_roll_data):
+                        if ut_data['count'] == 0:
                             continue
 
-                        # Determine family type based on number of bedrooms
-                        # 0-1 bedrooms (Studio/1BR): Couples without children
-                        # 2+ bedrooms: Families with children
-                        if ut.bedrooms < 2:
+                        sqft = ut_data['sqft']
+                        monthly_rent = ut_data['monthly_rent']
+                        bedrooms = ut_data.get('bedrooms', 1)
+
+                        # Determine income thresholds based on bedrooms
+                        if bedrooms < 2:
                             low_mod_income = couples_income['median']
                             middle_income = couples_income['75th_percentile']
-                            family_type = 'Couples (no children)'
                         else:
                             low_mod_income = families_income['median']
                             middle_income = families_income['75th_percentile']
-                            family_type = 'Families (with children)'
 
-                        annual_rent = ut.monthly_rent * 12
-                        burden_low_mod = annual_rent / low_mod_income if low_mod_income > 0 else 0
-                        burden_middle = annual_rent / middle_income if middle_income > 0 else 0
+                        # Calculate current values
+                        rent_per_sqft = monthly_rent / sqft if sqft > 0 else 0
+                        annual_rent = monthly_rent * 12
+                        burden_lm = annual_rent / low_mod_income if low_mod_income > 0 else 0
+                        burden_mid = annual_rent / middle_income if middle_income > 0 else 0
 
-                        affordability_rows.append({
-                            'unit_type': ut.name,
-                            'bedrooms': ut.bedrooms,
-                            'sqft': ut.sqft,
-                            'monthly_rent': ut.monthly_rent,
-                            'count': ut.count,
-                            'family_type': family_type,
-                            'low_mod_income': low_mod_income,
-                            'middle_income': middle_income,
-                            'burden_low_mod': burden_low_mod,
-                            'burden_middle': burden_middle,
-                            'affordable_low_mod': burden_low_mod <= affordability_ratio,
-                            'affordable_middle': burden_middle <= affordability_ratio,
-                        })
+                        # Track affordability
+                        affordability_summary['total'] += ut_data['count']
+                        if burden_lm <= affordability_ratio:
+                            affordability_summary['lm_affordable'] += ut_data['count']
+                        if burden_mid <= affordability_ratio:
+                            affordability_summary['mid_affordable'] += ut_data['count']
 
-                    if affordability_rows:
-                        aff_df = pd.DataFrame(affordability_rows)
-
-                        # Show income thresholds being used (from Income Distributions tab)
-                        st.markdown("**Income Thresholds Used** *(editable in Income Distributions tab)*:")
-                        thresh_col1, thresh_col2 = st.columns(2)
-                        with thresh_col1:
-                            st.markdown(f"**Low & Moderate (Median)**")
-                            st.text(f"Studio/1BR (0-1 beds): ${couples_income['median']:,.0f}")
-                            st.text(f"2BR+ (2+ beds): ${families_income['median']:,.0f}")
-                        with thresh_col2:
-                            st.markdown(f"**Middle Income (75th %ile)**")
-                            st.text(f"Studio/1BR (0-1 beds): ${couples_income['75th_percentile']:,.0f}")
-                            st.text(f"2BR+ (2+ beds): ${families_income['75th_percentile']:,.0f}")
-
-                        st.markdown("")
-
-                        # Format for display
-                        display_df = pd.DataFrame({
-                            'Unit Type': aff_df['unit_type'],
-                            'Beds': aff_df['bedrooms'],
-                            'Sq Ft': aff_df['sqft'].astype(int),
-                            'Rent': aff_df['monthly_rent'].apply(lambda x: f"${x:,.0f}"),
-                            '# Units': aff_df['count'],
-                            'Low/Mod Burden': aff_df['burden_low_mod'].apply(lambda x: f"{x:.1%}"),
-                            'Middle Burden': aff_df['burden_middle'].apply(lambda x: f"{x:.1%}"),
-                        })
-
-                        st.dataframe(display_df, use_container_width=True, hide_index=True)
-
-                        # Summary metrics
-                        total_units_aff = sum(r['count'] for r in affordability_rows)
-                        affordable_low_mod = sum(r['count'] for r in affordability_rows if r['affordable_low_mod'])
-                        affordable_middle = sum(r['count'] for r in affordability_rows if r['affordable_middle'])
-
-                        sum_col1, sum_col2 = st.columns(2)
-                        with sum_col1:
-                            pct_lm = affordable_low_mod / total_units_aff * 100 if total_units_aff > 0 else 0
-                            st.metric(
-                                "Affordable at Low/Moderate",
-                                f"{affordable_low_mod} of {total_units_aff} ({pct_lm:.0f}%)",
-                                help=f"Rent burden <= {affordability_ratio:.0%} of median income"
+                        # Editable row
+                        aff_cols = st.columns([2, 0.6, 0.8, 1.2, 1, 0.8, 1.2, 1.2])
+                        with aff_cols[0]:
+                            st.text(ut_data['name'])
+                        with aff_cols[1]:
+                            st.text(str(bedrooms))
+                        with aff_cols[2]:
+                            st.text(f"{sqft:,.0f}")
+                        with aff_cols[3]:
+                            st.text(f"${monthly_rent:,.0f}")
+                        with aff_cols[4]:
+                            new_psf = st.number_input(
+                                "$/sf", value=rent_per_sqft, min_value=0.0, max_value=20.0,
+                                step=0.25, format="%.2f", key=f"aff_psf_{listing.id}_{i}_v{wv}",
+                                label_visibility="collapsed"
                             )
-                        with sum_col2:
-                            pct_mid = affordable_middle / total_units_aff * 100 if total_units_aff > 0 else 0
-                            st.metric(
-                                "Affordable at Middle Income",
-                                f"{affordable_middle} of {total_units_aff} ({pct_mid:.0f}%)",
-                                help=f"Rent burden <= {affordability_ratio:.0%} of 75th percentile income"
-                            )
+                        with aff_cols[5]:
+                            st.text(str(ut_data['count']))
+                        with aff_cols[6]:
+                            new_burden_lm = st.number_input(
+                                "L/M", value=burden_lm * 100, min_value=0.0, max_value=100.0,
+                                step=1.0, format="%.1f", key=f"aff_lm_{listing.id}_{i}_v{wv}",
+                                label_visibility="collapsed"
+                            ) / 100
+                        with aff_cols[7]:
+                            new_burden_mid = st.number_input(
+                                "Mid", value=burden_mid * 100, min_value=0.0, max_value=100.0,
+                                step=1.0, format="%.1f", key=f"aff_mid_{listing.id}_{i}_v{wv}",
+                                label_visibility="collapsed"
+                            ) / 100
 
-                        # Detailed calculation table
-                        with st.expander("View Affordability Calculations"):
-                            st.markdown(f"""
-                            **Methodology:**
-                            - Rent Burden = Annual Rent ÷ Income Threshold
-                            - Affordable if Rent Burden ≤ {affordability_ratio:.0%}
-                            - Studio/1BR (0-1 bedrooms) use "Couples without Children" thresholds
-                            - 2BR+ (2+ bedrooms) use "Families with Children" thresholds
-                            """)
+                        # Check which input changed and update rent accordingly
+                        new_rent = monthly_rent
+                        rent_changed = False
 
-                            calc_df = pd.DataFrame({
-                                'Unit Type': aff_df['unit_type'],
-                                'Beds': aff_df['bedrooms'],
-                                'Sq Ft': aff_df['sqft'].astype(int),
-                                'Monthly Rent': aff_df['monthly_rent'].apply(lambda x: f"${x:,.0f}"),
-                                'Annual Rent': (aff_df['monthly_rent'] * 12).apply(lambda x: f"${x:,.0f}"),
-                                'Family Type': aff_df['family_type'],
-                                'Low/Mod Income': aff_df['low_mod_income'].apply(lambda x: f"${x:,.0f}"),
-                                'Middle Income': aff_df['middle_income'].apply(lambda x: f"${x:,.0f}"),
-                                'Low/Mod Burden': aff_df['burden_low_mod'].apply(lambda x: f"{x:.1%}"),
-                                'Middle Burden': aff_df['burden_middle'].apply(lambda x: f"{x:.1%}"),
-                                'Affordable (L/M)': aff_df['affordable_low_mod'].apply(lambda x: "Yes" if x else "No"),
-                                'Affordable (Mid)': aff_df['affordable_middle'].apply(lambda x: "Yes" if x else "No"),
-                            })
-                            st.dataframe(calc_df, use_container_width=True, hide_index=True)
+                        # $/SqFt changed
+                        if abs(new_psf - rent_per_sqft) > 0.001:
+                            new_rent = new_psf * sqft
+                            rent_changed = True
+                        # L/M Burden changed
+                        elif abs(new_burden_lm - burden_lm) > 0.0001:
+                            new_rent = (new_burden_lm * low_mod_income) / 12
+                            rent_changed = True
+                        # Mid Burden changed
+                        elif abs(new_burden_mid - burden_mid) > 0.0001:
+                            new_rent = (new_burden_mid * middle_income) / 12
+                            rent_changed = True
+
+                        if rent_changed:
+                            # Update rent roll in session state
+                            updated_roll = copy.deepcopy(st.session_state[rent_roll_key])
+                            updated_roll[i]['monthly_rent'] = float(new_rent)
+                            st.session_state[rent_roll_key] = updated_roll
+                            st.session_state['_widget_version'] = wv + 1
+                            save_with_history(f"Updated {ut_data['name']} rent via affordability table")
+                            st.rerun()
+
+                    # Summary metrics
+                    total_units_aff = affordability_summary['total']
+                    affordable_low_mod = affordability_summary['lm_affordable']
+                    affordable_middle = affordability_summary['mid_affordable']
+
+                    sum_col1, sum_col2 = st.columns(2)
+                    with sum_col1:
+                        pct_lm = affordable_low_mod / total_units_aff * 100 if total_units_aff > 0 else 0
+                        st.metric(
+                            "Affordable at Low/Moderate",
+                            f"{affordable_low_mod} of {total_units_aff} ({pct_lm:.0f}%)",
+                            help=f"Rent burden <= {affordability_ratio:.0%} of median income"
+                        )
+                    with sum_col2:
+                        pct_mid = affordable_middle / total_units_aff * 100 if total_units_aff > 0 else 0
+                        st.metric(
+                            "Affordable at Middle Income",
+                            f"{affordable_middle} of {total_units_aff} ({pct_mid:.0f}%)",
+                            help=f"Rent burden <= {affordability_ratio:.0%} of 75th percentile income"
+                        )
 
                 st.divider()
 
@@ -1453,8 +1715,13 @@ with tab_viability:
                         payment_factor = 1 / n_payments
                     annual_debt_service = loan_amount * payment_factor * 12
 
-                    # NOI and cash flow
-                    noi = rent_roll.total_annual_revenue * (1 - opex_ratio)
+                    # NOI and cash flow using Effective Gross Income
+                    gross_revenue = rent_roll.total_annual_revenue
+                    vacancy_loss_amt = gross_revenue * vacancy_rate
+                    bad_debt_loss_amt = gross_revenue * bad_debt
+                    eff_gross_income = gross_revenue - vacancy_loss_amt - bad_debt_loss_amt
+                    opex_amt = eff_gross_income * opex_ratio
+                    noi = eff_gross_income - opex_amt
                     cash_flow = noi - annual_debt_service
                     dscr = noi / annual_debt_service if annual_debt_service > 0 else float('inf')
 
@@ -1469,12 +1736,14 @@ with tab_viability:
                     )
                     # Override year 0 with actual rent roll values
                     base_rent_psf = rent_roll.weighted_avg_rent_psf
-                    base_opex = rent_roll.total_annual_revenue * opex_ratio  # Year 0 operating expenses
+                    base_opex = eff_gross_income * opex_ratio  # Year 0 operating expenses
+                    vacancy_bad_debt_rate = vacancy_rate + bad_debt  # Combined deduction rate
                     adjusted_time_series = []
                     for year_data in time_series_for_irr:
                         year = year_data['year']
                         if year == 0:
-                            year_data['annual_revenue'] = rent_roll.total_annual_revenue
+                            year_data['gross_revenue'] = gross_revenue
+                            year_data['effective_gross'] = eff_gross_income
                             year_data['opex'] = base_opex
                             year_data['noi'] = noi
                             year_data['cash_flow'] = cash_flow
@@ -1482,10 +1751,13 @@ with tab_viability:
                         else:
                             # Revenue grows by housing charge schedule
                             growth_factor = year_data['rent_psf'] / base_rent_psf if base_rent_psf > 0 else 1
-                            year_data['annual_revenue'] = rent_roll.total_annual_revenue * growth_factor
+                            year_gross = gross_revenue * growth_factor
+                            year_eff_gross = year_gross * (1 - vacancy_bad_debt_rate)
                             # Opex grows by inflation each year
+                            year_data['gross_revenue'] = year_gross
+                            year_data['effective_gross'] = year_eff_gross
                             year_data['opex'] = base_opex * ((1 + inflation_assumption) ** year)
-                            year_data['noi'] = year_data['annual_revenue'] - year_data['opex']
+                            year_data['noi'] = year_eff_gross - year_data['opex']
                             year_data['cash_flow'] = year_data['noi'] - annual_debt_service
                         adjusted_time_series.append(year_data)
 
@@ -1494,20 +1766,25 @@ with tab_viability:
                     meets_irr_target = irr_25yr >= equity_return_required
 
                     # Key metrics
-                    metric_cols = st.columns(5)
+                    metric_cols = st.columns(6)
                     with metric_cols[0]:
-                        st.metric("Acquisition $/SqFt", f"${params['acquisition_cost_psf']:.0f}")
+                        acq_label = "Acquisition $/SqFt"
+                        if params.get('haircut_pct', 0) > 0:
+                            acq_label += f" ({params['haircut_pct']:.0f}% haircut)"
+                        st.metric(acq_label, f"${params['acquisition_cost_psf']:.0f}")
                     with metric_cols[1]:
+                        st.metric("Rent $/SqFt", f"${rent_roll.weighted_avg_rent_psf:.2f}")
+                    with metric_cols[2]:
                         st.metric("DSCR", f"{dscr:.2f}",
                                   delta="OK" if dscr_ok else "Below 1.0",
                                   delta_color="normal" if dscr_ok else "inverse")
-                    with metric_cols[2]:
-                        st.metric("Year 1 Cash Flow", f"${cash_flow:,.0f}")
                     with metric_cols[3]:
+                        st.metric("Year 1 Cash Flow", f"${cash_flow:,.0f}")
+                    with metric_cols[4]:
                         st.metric("25-Year IRR", f"{irr_25yr:.1%}",
                                   delta=f"vs {equity_return_required:.1%} target",
                                   delta_color="normal" if meets_irr_target else "inverse")
-                    with metric_cols[4]:
+                    with metric_cols[5]:
                         is_viable = dscr_ok and meets_irr_target
                         status_text = "VIABLE" if is_viable else "NOT VIABLE"
                         st.metric("Status", status_text)
@@ -1521,9 +1798,11 @@ with tab_viability:
                     # Detailed viability calculations
                     with st.expander("View Viability Calculations"):
                         st.markdown("**Acquisition & Financing:**")
+                        haircut_applied = params.get('haircut_pct', 0) > 0
+                        price_note = f"Price ÷ SqFt (after {params.get('haircut_pct', 0):.0f}% haircut)" if haircut_applied else "Price ÷ SqFt"
                         fin_calc_data = [
                             ("Building Square Footage", f"{building_sqft:,.0f} sqft", "From rent roll"),
-                            ("Acquisition Cost per SqFt", f"${params['acquisition_cost_psf']:,.2f}", "Price ÷ SqFt"),
+                            ("Acquisition Cost per SqFt", f"${params['acquisition_cost_psf']:,.2f}", price_note),
                             ("Total Acquisition Cost", f"${acquisition_cost:,.0f}", f"{building_sqft:,.0f} × ${params['acquisition_cost_psf']:,.2f}"),
                             ("Loan-to-Value (LTV)", f"{max_ltv:.0%}", "Model parameter"),
                             ("Senior Loan Amount", f"${loan_amount:,.0f}", f"${acquisition_cost:,.0f} × {max_ltv:.0%}"),
@@ -1545,12 +1824,14 @@ with tab_viability:
                         st.dataframe(debt_calc_df, use_container_width=True, hide_index=True)
 
                         st.markdown("**Cash Flow & DSCR:**")
-                        opex_amount = rent_roll.total_annual_revenue * opex_ratio
                         cf_calc_data = [
-                            ("Gross Revenue", f"${rent_roll.total_annual_revenue:,.0f}", "Sum of all unit rents × 12"),
+                            ("Gross Revenue", f"${gross_revenue:,.0f}", "Sum of all unit rents × 12"),
+                            ("Less: Vacancy", f"(${vacancy_loss_amt:,.0f})", f"${gross_revenue:,.0f} × {vacancy_rate:.1%}"),
+                            ("Less: Bad Debt", f"(${bad_debt_loss_amt:,.0f})", f"${gross_revenue:,.0f} × {bad_debt:.1%}"),
+                            ("Effective Gross Income", f"${eff_gross_income:,.0f}", f"${gross_revenue:,.0f} - ${vacancy_loss_amt:,.0f} - ${bad_debt_loss_amt:,.0f}"),
                             ("Operating Expense Ratio", f"{opex_ratio:.0%}", "Model parameter"),
-                            ("Operating Expenses", f"${opex_amount:,.0f}", f"${rent_roll.total_annual_revenue:,.0f} × {opex_ratio:.0%}"),
-                            ("Net Operating Income (NOI)", f"${noi:,.0f}", f"${rent_roll.total_annual_revenue:,.0f} - ${opex_amount:,.0f}"),
+                            ("Operating Expenses", f"${opex_amt:,.0f}", f"${eff_gross_income:,.0f} × {opex_ratio:.0%}"),
+                            ("Net Operating Income (NOI)", f"${noi:,.0f}", f"${eff_gross_income:,.0f} - ${opex_amt:,.0f}"),
                             ("Annual Debt Service", f"${annual_debt_service:,.0f}", "From above"),
                             ("Cash Flow", f"${cash_flow:,.0f}", f"${noi:,.0f} - ${annual_debt_service:,.0f}"),
                             ("DSCR", f"{dscr:.2f}", f"${noi:,.0f} ÷ ${annual_debt_service:,.0f}"),
@@ -1567,4 +1848,202 @@ with tab_viability:
                         - Debt service remains constant
                         - **25-Year IRR: {irr_25yr:.2%}**
                         """)
+
+                    # ---- Viability Space Visualization ----
+                    st.divider()
+                    st.subheader("Viability Space")
+                    st.caption("Explore how viability changes across two parameters. Green = viable, red = not viable. Star marks current position.")
+
+                    # Define available parameters for axes
+                    VIABILITY_PARAMS = {
+                        'Haircut %': {'current': haircut_pct, 'range': (0, 50), 'step': 2, 'format': '{:.0f}%', 'mult': 1},
+                        'LTV %': {'current': max_ltv * 100, 'range': (50, 95), 'step': 5, 'format': '{:.0f}%', 'mult': 1},
+                        'Interest Rate %': {'current': interest_rate_senior * 100, 'range': (2, 10), 'step': 0.5, 'format': '{:.1f}%', 'mult': 1},
+                        'OpEx Ratio %': {'current': opex_ratio * 100, 'range': (15, 55), 'step': 2, 'format': '{:.0f}%', 'mult': 1},
+                        'Vacancy %': {'current': vacancy_rate * 100, 'range': (0, 15), 'step': 1, 'format': '{:.0f}%', 'mult': 1},
+                        'Rent $/SqFt': {'current': rent_roll.weighted_avg_rent_psf, 'range': (1, 8), 'step': 0.25, 'format': '${:.2f}', 'mult': 1},
+                        'Target IRR %': {'current': equity_return_required * 100, 'range': (0, 15), 'step': 0.5, 'format': '{:.1f}%', 'mult': 1},
+                    }
+
+                    # Parameter selection
+                    param_options = list(VIABILITY_PARAMS.keys())
+                    axis_cols = st.columns([1, 1, 2])
+                    with axis_cols[0]:
+                        x_param = st.selectbox("X-Axis", param_options, index=0, key=f"viab_x_{listing.id}")
+                    with axis_cols[1]:
+                        # Default Y to something different from X
+                        default_y = 1 if param_options[0] == x_param else 0
+                        y_options = [p for p in param_options if p != x_param]
+                        y_param = st.selectbox("Y-Axis", y_options, index=min(default_y, len(y_options)-1), key=f"viab_y_{listing.id}")
+
+                    # Get parameter configs
+                    x_cfg = VIABILITY_PARAMS[x_param]
+                    y_cfg = VIABILITY_PARAMS[y_param]
+
+                    # Generate grid values
+                    x_values = np.arange(x_cfg['range'][0], x_cfg['range'][1] + x_cfg['step'], x_cfg['step'])
+                    y_values = np.arange(y_cfg['range'][0], y_cfg['range'][1] + y_cfg['step'], y_cfg['step'])
+
+                    # Function to calculate viability for given parameter values
+                    def calc_viability_point(x_val, y_val, x_name, y_name):
+                        # Start with current values
+                        p_haircut = haircut_pct
+                        p_ltv = max_ltv
+                        p_interest = interest_rate_senior
+                        p_opex = opex_ratio
+                        p_vacancy = vacancy_rate
+                        p_bad_debt = bad_debt
+                        p_rent_psf = rent_roll.weighted_avg_rent_psf
+                        p_target_irr = equity_return_required
+
+                        # Override X parameter
+                        if x_name == 'Haircut %':
+                            p_haircut = x_val / 100
+                        elif x_name == 'LTV %':
+                            p_ltv = x_val / 100
+                        elif x_name == 'Interest Rate %':
+                            p_interest = x_val / 100
+                        elif x_name == 'OpEx Ratio %':
+                            p_opex = x_val / 100
+                        elif x_name == 'Vacancy %':
+                            p_vacancy = x_val / 100
+                        elif x_name == 'Rent $/SqFt':
+                            p_rent_psf = x_val
+                        elif x_name == 'Target IRR %':
+                            p_target_irr = x_val / 100
+
+                        # Override Y parameter
+                        if y_name == 'Haircut %':
+                            p_haircut = y_val / 100
+                        elif y_name == 'LTV %':
+                            p_ltv = y_val / 100
+                        elif y_name == 'Interest Rate %':
+                            p_interest = y_val / 100
+                        elif y_name == 'OpEx Ratio %':
+                            p_opex = y_val / 100
+                        elif y_name == 'Vacancy %':
+                            p_vacancy = y_val / 100
+                        elif y_name == 'Rent $/SqFt':
+                            p_rent_psf = y_val
+                        elif y_name == 'Target IRR %':
+                            p_target_irr = y_val / 100
+
+                        # Calculate financials
+                        eff_price = listing.asking_price * (1 - p_haircut)
+                        loan_amt = eff_price * p_ltv
+                        eq = eff_price * (1 - p_ltv)
+
+                        # Debt service
+                        m_rate = p_interest / 12
+                        n_pmt = 50 * 12
+                        if m_rate > 0:
+                            pmt_factor = m_rate * (1 + m_rate)**n_pmt / ((1 + m_rate)**n_pmt - 1)
+                        else:
+                            pmt_factor = 1 / n_pmt
+                        ann_debt_svc = loan_amt * pmt_factor * 12
+
+                        # Revenue with rent adjustment
+                        if p_rent_psf != rent_roll.weighted_avg_rent_psf and rent_roll.weighted_avg_rent_psf > 0:
+                            rent_factor = p_rent_psf / rent_roll.weighted_avg_rent_psf
+                        else:
+                            rent_factor = 1.0
+
+                        # Year 0 values
+                        base_gross = rent_roll.total_annual_revenue * rent_factor
+                        base_eff_gross = base_gross * (1 - p_vacancy - p_bad_debt)
+                        base_opex_amt = base_eff_gross * p_opex
+                        base_noi = base_eff_gross - base_opex_amt
+                        base_cf = base_noi - ann_debt_svc
+
+                        # DSCR (Year 1)
+                        pt_dscr = base_noi / ann_debt_svc if ann_debt_svc > 0 else float('inf')
+
+                        # Build 25-year cash flows for IRR
+                        cash_flows = []
+                        for yr in range(1, 26):
+                            # Revenue grows by housing charge schedule
+                            rev_growth = 1.0
+                            for y in range(yr):
+                                rev_growth *= (1 + rate_schedule[min(y, len(rate_schedule) - 1)])
+                            yr_gross = base_gross * rev_growth
+                            yr_eff_gross = yr_gross * (1 - p_vacancy - p_bad_debt)
+                            # OpEx grows by inflation
+                            yr_opex = base_opex_amt * ((1 + inflation_assumption) ** yr)
+                            yr_noi = yr_eff_gross - yr_opex
+                            yr_cf = yr_noi - ann_debt_svc
+                            cash_flows.append(yr_cf)
+
+                        # Calculate 25-year IRR
+                        pt_irr = calculate_project_irr(eq, cash_flows)
+
+                        # Viability check
+                        dscr_ok = pt_dscr >= 1.0
+                        irr_ok = pt_irr >= p_target_irr
+                        viable = dscr_ok and irr_ok
+
+                        return {'dscr': pt_dscr, 'irr': pt_irr, 'viable': viable, 'dscr_ok': dscr_ok, 'irr_ok': irr_ok}
+
+                    # Build grid data
+                    grid_data = []
+                    for x_val in x_values:
+                        for y_val in y_values:
+                            result = calc_viability_point(x_val, y_val, x_param, y_param)
+                            grid_data.append({
+                                'x': x_val,
+                                'y': y_val,
+                                'viable': 1 if result['viable'] else 0,
+                                'dscr': result['dscr'],
+                                'irr': result['irr'] * 100,
+                                'status': 'Viable' if result['viable'] else ('DSCR < 1' if not result['dscr_ok'] else 'IRR Below Target'),
+                            })
+
+                    grid_df = pd.DataFrame(grid_data)
+
+                    # Create heatmap
+                    heatmap = alt.Chart(grid_df).mark_rect().encode(
+                        x=alt.X('x:O', title=x_param, axis=alt.Axis(labelAngle=0)),
+                        y=alt.Y('y:O', title=y_param, sort='descending'),
+                        color=alt.Color('viable:Q',
+                                        scale=alt.Scale(domain=[0, 1], range=['#ffcccc', '#ccffcc']),
+                                        legend=None),
+                        tooltip=[
+                            alt.Tooltip('x:Q', title=x_param, format='.1f'),
+                            alt.Tooltip('y:Q', title=y_param, format='.1f'),
+                            alt.Tooltip('dscr:Q', title='DSCR', format='.2f'),
+                            alt.Tooltip('irr:Q', title='25-Year IRR %', format='.1f'),
+                            alt.Tooltip('status:N', title='Status'),
+                        ]
+                    )
+
+                    # Add current position marker
+                    current_point = pd.DataFrame([{
+                        'x': x_cfg['current'],
+                        'y': y_cfg['current'],
+                    }])
+
+                    # Find closest grid point for current position
+                    current_x_grid = min(x_values, key=lambda v: abs(v - x_cfg['current']))
+                    current_y_grid = min(y_values, key=lambda v: abs(v - y_cfg['current']))
+
+                    current_marker = alt.Chart(pd.DataFrame([{'x': current_x_grid, 'y': current_y_grid}])).mark_point(
+                        shape='diamond',
+                        size=200,
+                        color='black',
+                        strokeWidth=2,
+                        filled=True,
+                    ).encode(
+                        x='x:O',
+                        y='y:O',
+                    )
+
+                    # Combine chart
+                    viability_chart = (heatmap + current_marker).properties(
+                        height=400,
+                        title=f'Viability Space: {x_param} vs {y_param}'
+                    )
+
+                    st.altair_chart(viability_chart, use_container_width=True)
+
+                    # Show current values
+                    st.caption(f"Current position: {x_param} = {x_cfg['format'].format(x_cfg['current'])}, {y_param} = {y_cfg['format'].format(y_cfg['current'])}")
 

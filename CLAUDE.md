@@ -16,18 +16,19 @@ streamlit run app.py
 ## Architecture
 
 ```
-app.py                          # Main Streamlit entry point (two tabs)
+app.py                          # Main Streamlit entry point
 models/
   project_viability.py          # Financial model (DSCR, cash-on-cash, viability grid)
   income_distribution.py        # BC income distribution (log-normal model)
   listing.py                    # MultifamilyListing Pydantic model
   param_mapper.py               # Maps listings to viability params + analyze_portfolio()
+  rent_roll.py                  # Rent roll model for unit mix analysis
 visualizations/
-  income_band.py                # Bell curve + affordability band (animated)
   viability_space.py            # 2D heatmap + portfolio scatter
 data/
-  synthetic_listings.csv        # Sample BC multifamily listings (50 properties, 20+ units)
-  market_rents.csv              # Market rent per sqft by BC city (for missing cap_rate)
+  saved_listings.json           # Persisted listings with rent rolls
+  bc_housing_income_limits.csv  # BC Housing income limits by region
+  history.json                  # Session history
 ```
 
 ## App Structure
@@ -60,40 +61,9 @@ data/
 
 ## Data
 
-- `accumulated_rental_inflation.csv` - 25-year rent escalation scenarios (used for animation)
-- `synthetic_listings.csv` - Sample BC multifamily properties for analysis
-- `market_rents.csv` - Market rent per sqft by city (used when cap_rate is missing)
+- `saved_listings.json` - Persisted listings with rent roll data
+- `bc_housing_income_limits.csv` - BC Housing income limits by region and household type
 - BC income distribution: median ~$95K CAD (2025 est.), log-normal with sigma=0.65
-
-## Market Rent Fallback
-
-When a listing doesn't have a cap_rate (needed to derive rent_psf), the app uses market rent by city from `data/market_rents.csv`. This allows all listings to be analyzed even with incomplete data.
-
-The rent source is shown in the deep-dive tab: "(cap rate)" or "(market)".
-
-## Listings CSV Format
-
-The app accepts CSV files with multifamily property listings. Required columns:
-
-| Column | Type | Description |
-|--------|------|-------------|
-| id | string | Unique identifier |
-| address | string | Property address |
-| city | string | City name |
-| asking_price | float | Asking price in CAD |
-
-Optional columns (enhance analysis):
-
-| Column | Type | Description |
-|--------|------|-------------|
-| building_sqft | float | Total building square footage |
-| num_units | int | Number of units (should be 20+) |
-| year_built | int | Year constructed |
-| cap_rate | float | Cap rate as decimal (e.g., 0.045 for 4.5%) |
-| noi | float | Net operating income |
-| source | string | Data source identifier |
-| url | string | Link to listing |
-| listing_status | string | active/sold/pending |
 
 ## Development Approach
 

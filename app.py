@@ -8,6 +8,7 @@ and income affordability in British Columbia.
 import streamlit as st
 import pandas as pd
 import numpy as np
+import numpy_financial as npf
 import os
 import time
 import json
@@ -296,8 +297,7 @@ TRESAH_RENT_ROLL = [
 
 DEFAULT_SCENARIO_PARAMS = {
     'opex_ratio': 0.25,
-    'vacancy_rate': 0.03,
-    'bad_debt': 0.01,
+    'vacancy_bad_debt': 0.025,  # Combined vacancy and bad debt
     'interest_rate_senior': 0.048,
     'max_ltv': 0.80,
     'inflation_assumption': 0.02,
@@ -1236,30 +1236,20 @@ with tab_viability:
             # 3. OPERATIONS - How it performs
             # ============================================
             st.markdown("**Operations**")
-            st.caption("Vacancy, bad debt, and operating expenses. Subtracted from gross income.")
+            st.caption("Vacancy/bad debt and operating expenses. Subtracted from gross income.")
 
-            ops_cols = st.columns(3)
+            ops_cols = st.columns(2)
             with ops_cols[0]:
-                new_vacancy = st.number_input(
-                    "Vacancy Rate (%)",
-                    min_value=0.0, max_value=20.0,
-                    value=scenario_params.get('vacancy_rate', 0.03) * 100,
+                new_vacancy_bad_debt = st.number_input(
+                    "Vacancy & Bad Debt (%)",
+                    min_value=0.0, max_value=25.0,
+                    value=scenario_params.get('vacancy_bad_debt', 0.025) * 100,
                     step=0.5, format="%.1f",
-                    key=f"vacancy_{listing.id}_v{wv}",
-                    help="Expected vacancy as % of gross income."
+                    key=f"vacancy_bad_debt_{listing.id}_v{wv}",
+                    help="Combined vacancy and bad debt as % of gross income."
                 ) / 100
 
             with ops_cols[1]:
-                new_bad_debt = st.number_input(
-                    "Bad Debt (%)",
-                    min_value=0.0, max_value=10.0,
-                    value=scenario_params.get('bad_debt', 0.01) * 100,
-                    step=0.5, format="%.1f",
-                    key=f"bad_debt_{listing.id}_v{wv}",
-                    help="Expected bad debt/collection loss as % of gross income."
-                ) / 100
-
-            with ops_cols[2]:
                 new_opex = st.number_input(
                     "OpEx Ratio (%)",
                     min_value=15.0, max_value=55.0,
@@ -1273,14 +1263,12 @@ with tab_viability:
             if (new_interest != scenario_params['interest_rate_senior'] or
                 new_ltv != scenario_params['max_ltv'] or
                 new_opex != scenario_params['opex_ratio'] or
-                new_vacancy != scenario_params.get('vacancy_rate', 0.03) or
-                new_bad_debt != scenario_params.get('bad_debt', 0.01) or
+                new_vacancy_bad_debt != scenario_params.get('vacancy_bad_debt', 0.025) or
                 new_target_return != scenario_params['equity_return_required']):
                 scenario_params['interest_rate_senior'] = new_interest
                 scenario_params['max_ltv'] = new_ltv
                 scenario_params['opex_ratio'] = new_opex
-                scenario_params['vacancy_rate'] = new_vacancy
-                scenario_params['bad_debt'] = new_bad_debt
+                scenario_params['vacancy_bad_debt'] = new_vacancy_bad_debt
                 scenario_params['equity_return_required'] = new_target_return
                 assumptions['opex_ratio'] = new_opex
 
@@ -1290,8 +1278,7 @@ with tab_viability:
 
             # Extract commonly used params for convenience
             opex_ratio = fixed_params['opex_ratio']
-            vacancy_rate = scenario_params.get('vacancy_rate', 0.03)
-            bad_debt = scenario_params.get('bad_debt', 0.01)
+            vacancy_bad_debt = scenario_params.get('vacancy_bad_debt', 0.025)
             interest_rate_senior = fixed_params['interest_rate_senior']
             max_ltv = fixed_params['max_ltv']
             inflation_assumption = fixed_params['inflation_assumption']
@@ -1422,9 +1409,8 @@ with tab_viability:
 
                 # Show totals - calculate Effective Gross Income
                 gross_income = rent_roll.total_annual_revenue
-                vacancy_loss = gross_income * vacancy_rate
-                bad_debt_loss = gross_income * bad_debt
-                effective_gross_income = gross_income - vacancy_loss - bad_debt_loss
+                vacancy_bad_debt_loss = gross_income * vacancy_bad_debt
+                effective_gross_income = gross_income - vacancy_bad_debt_loss
                 opex_amount = effective_gross_income * opex_ratio
                 noi_from_roll = effective_gross_income - opex_amount
 
@@ -1437,7 +1423,7 @@ with tab_viability:
                     st.metric("Gross Income", f"${gross_income:,.0f}")
                 with total_cols[3]:
                     st.metric("Effective Gross", f"${effective_gross_income:,.0f}",
-                             delta=f"-${vacancy_loss + bad_debt_loss:,.0f}",
+                             delta=f"-${vacancy_bad_debt_loss:,.0f}",
                              delta_color="off")
                 with total_cols[4]:
                     st.metric("NOI", f"${noi_from_roll:,.0f}")
@@ -1717,9 +1703,8 @@ with tab_viability:
 
                     # NOI and cash flow using Effective Gross Income
                     gross_revenue = rent_roll.total_annual_revenue
-                    vacancy_loss_amt = gross_revenue * vacancy_rate
-                    bad_debt_loss_amt = gross_revenue * bad_debt
-                    eff_gross_income = gross_revenue - vacancy_loss_amt - bad_debt_loss_amt
+                    vacancy_bad_debt_amt = gross_revenue * vacancy_bad_debt
+                    eff_gross_income = gross_revenue - vacancy_bad_debt_amt
                     opex_amt = eff_gross_income * opex_ratio
                     noi = eff_gross_income - opex_amt
                     cash_flow = noi - annual_debt_service
@@ -1737,7 +1722,6 @@ with tab_viability:
                     # Override year 0 with actual rent roll values
                     base_rent_psf = rent_roll.weighted_avg_rent_psf
                     base_opex = eff_gross_income * opex_ratio  # Year 0 operating expenses
-                    vacancy_bad_debt_rate = vacancy_rate + bad_debt  # Combined deduction rate
                     adjusted_time_series = []
                     for year_data in time_series_for_irr:
                         year = year_data['year']
@@ -1752,7 +1736,7 @@ with tab_viability:
                             # Revenue grows by housing charge schedule
                             growth_factor = year_data['rent_psf'] / base_rent_psf if base_rent_psf > 0 else 1
                             year_gross = gross_revenue * growth_factor
-                            year_eff_gross = year_gross * (1 - vacancy_bad_debt_rate)
+                            year_eff_gross = year_gross * (1 - vacancy_bad_debt)
                             # Opex grows by inflation each year
                             year_data['gross_revenue'] = year_gross
                             year_data['effective_gross'] = year_eff_gross
@@ -1763,7 +1747,7 @@ with tab_viability:
 
                     cash_flows_for_irr = [m['cash_flow'] for m in adjusted_time_series if m['year'] > 0]
                     irr_25yr = calculate_project_irr(equity, cash_flows_for_irr)
-                    meets_irr_target = irr_25yr >= equity_return_required
+                    meets_irr_target = irr_25yr >= equity_return_required - 0.0001  # tolerance for floating point
 
                     # Key metrics
                     metric_cols = st.columns(6)
@@ -1781,8 +1765,8 @@ with tab_viability:
                     with metric_cols[3]:
                         st.metric("Year 1 Cash Flow", f"${cash_flow:,.0f}")
                     with metric_cols[4]:
-                        st.metric("25-Year IRR", f"{irr_25yr:.1%}",
-                                  delta=f"vs {equity_return_required:.1%} target",
+                        st.metric("25-Year IRR", f"{irr_25yr:.2%}",
+                                  delta=f"vs {equity_return_required:.2%} target",
                                   delta_color="normal" if meets_irr_target else "inverse")
                     with metric_cols[5]:
                         is_viable = dscr_ok and meets_irr_target
@@ -1826,9 +1810,8 @@ with tab_viability:
                         st.markdown("**Cash Flow & DSCR:**")
                         cf_calc_data = [
                             ("Gross Revenue", f"${gross_revenue:,.0f}", "Sum of all unit rents × 12"),
-                            ("Less: Vacancy", f"(${vacancy_loss_amt:,.0f})", f"${gross_revenue:,.0f} × {vacancy_rate:.1%}"),
-                            ("Less: Bad Debt", f"(${bad_debt_loss_amt:,.0f})", f"${gross_revenue:,.0f} × {bad_debt:.1%}"),
-                            ("Effective Gross Income", f"${eff_gross_income:,.0f}", f"${gross_revenue:,.0f} - ${vacancy_loss_amt:,.0f} - ${bad_debt_loss_amt:,.0f}"),
+                            ("Less: Vacancy & Bad Debt", f"(${vacancy_bad_debt_amt:,.0f})", f"${gross_revenue:,.0f} × {vacancy_bad_debt:.1%}"),
+                            ("Effective Gross Income", f"${eff_gross_income:,.0f}", f"${gross_revenue:,.0f} - ${vacancy_bad_debt_amt:,.0f}"),
                             ("Operating Expense Ratio", f"{opex_ratio:.0%}", "Model parameter"),
                             ("Operating Expenses", f"${opex_amt:,.0f}", f"${eff_gross_income:,.0f} × {opex_ratio:.0%}"),
                             ("Net Operating Income (NOI)", f"${noi:,.0f}", f"${eff_gross_income:,.0f} - ${opex_amt:,.0f}"),
@@ -1860,21 +1843,54 @@ with tab_viability:
                         'LTV %': {'current': max_ltv * 100, 'range': (50, 95), 'step': 5, 'format': '{:.0f}%', 'mult': 1},
                         'Interest Rate %': {'current': interest_rate_senior * 100, 'range': (2, 10), 'step': 0.5, 'format': '{:.1f}%', 'mult': 1},
                         'OpEx Ratio %': {'current': opex_ratio * 100, 'range': (15, 55), 'step': 2, 'format': '{:.0f}%', 'mult': 1},
-                        'Vacancy %': {'current': vacancy_rate * 100, 'range': (0, 15), 'step': 1, 'format': '{:.0f}%', 'mult': 1},
+                        'Vacancy & Bad Debt %': {'current': vacancy_bad_debt * 100, 'range': (0, 20), 'step': 0.5, 'format': '{:.1f}%', 'mult': 1},
                         'Rent $/SqFt': {'current': rent_roll.weighted_avg_rent_psf, 'range': (1, 8), 'step': 0.25, 'format': '${:.2f}', 'mult': 1},
                         'Target IRR %': {'current': equity_return_required * 100, 'range': (0, 15), 'step': 0.5, 'format': '{:.1f}%', 'mult': 1},
                     }
 
                     # Parameter selection
                     param_options = list(VIABILITY_PARAMS.keys())
-                    axis_cols = st.columns([1, 1, 2])
+
+                    # Track selections and widget version for swap functionality
+                    x_sel_key = f"viab_x_sel_{listing.id}"
+                    y_sel_key = f"viab_y_sel_{listing.id}"
+                    viab_ver_key = f"viab_ver_{listing.id}"
+
+                    # Initialize session state
+                    if x_sel_key not in st.session_state:
+                        st.session_state[x_sel_key] = param_options[0]
+                    if y_sel_key not in st.session_state:
+                        st.session_state[y_sel_key] = param_options[1]
+                    if viab_ver_key not in st.session_state:
+                        st.session_state[viab_ver_key] = 0
+
+                    viab_ver = st.session_state[viab_ver_key]
+                    current_x = st.session_state[x_sel_key]
+                    current_y = st.session_state[y_sel_key]
+
+                    axis_cols = st.columns([1, 0.3, 1, 1.7])
                     with axis_cols[0]:
-                        x_param = st.selectbox("X-Axis", param_options, index=0, key=f"viab_x_{listing.id}")
+                        x_idx = param_options.index(current_x) if current_x in param_options else 0
+                        x_param = st.selectbox("X-Axis", param_options, index=x_idx, key=f"viab_x_{listing.id}_v{viab_ver}")
+                        if x_param != st.session_state[x_sel_key]:
+                            st.session_state[x_sel_key] = x_param
                     with axis_cols[1]:
-                        # Default Y to something different from X
-                        default_y = 1 if param_options[0] == x_param else 0
+                        st.write("")  # Spacing
+                        if st.button("⇄", key=f"swap_axes_{listing.id}", help="Swap X and Y axes"):
+                            # Swap selections and increment version for fresh widgets
+                            st.session_state[x_sel_key] = current_y
+                            st.session_state[y_sel_key] = current_x
+                            st.session_state[viab_ver_key] = viab_ver + 1
+                            st.rerun()
+                    with axis_cols[2]:
                         y_options = [p for p in param_options if p != x_param]
-                        y_param = st.selectbox("Y-Axis", y_options, index=min(default_y, len(y_options)-1), key=f"viab_y_{listing.id}")
+                        # Ensure current Y selection is valid
+                        if current_y == x_param or current_y not in y_options:
+                            current_y = y_options[0]
+                        y_idx = y_options.index(current_y) if current_y in y_options else 0
+                        y_param = st.selectbox("Y-Axis", y_options, index=y_idx, key=f"viab_y_{listing.id}_v{viab_ver}")
+                        if y_param != st.session_state[y_sel_key]:
+                            st.session_state[y_sel_key] = y_param
 
                     # Get parameter configs
                     x_cfg = VIABILITY_PARAMS[x_param]
@@ -1891,8 +1907,7 @@ with tab_viability:
                         p_ltv = max_ltv
                         p_interest = interest_rate_senior
                         p_opex = opex_ratio
-                        p_vacancy = vacancy_rate
-                        p_bad_debt = bad_debt
+                        p_vacancy_bad_debt = vacancy_bad_debt
                         p_rent_psf = rent_roll.weighted_avg_rent_psf
                         p_target_irr = equity_return_required
 
@@ -1905,8 +1920,8 @@ with tab_viability:
                             p_interest = x_val / 100
                         elif x_name == 'OpEx Ratio %':
                             p_opex = x_val / 100
-                        elif x_name == 'Vacancy %':
-                            p_vacancy = x_val / 100
+                        elif x_name == 'Vacancy & Bad Debt %':
+                            p_vacancy_bad_debt = x_val / 100
                         elif x_name == 'Rent $/SqFt':
                             p_rent_psf = x_val
                         elif x_name == 'Target IRR %':
@@ -1921,8 +1936,8 @@ with tab_viability:
                             p_interest = y_val / 100
                         elif y_name == 'OpEx Ratio %':
                             p_opex = y_val / 100
-                        elif y_name == 'Vacancy %':
-                            p_vacancy = y_val / 100
+                        elif y_name == 'Vacancy & Bad Debt %':
+                            p_vacancy_bad_debt = y_val / 100
                         elif y_name == 'Rent $/SqFt':
                             p_rent_psf = y_val
                         elif y_name == 'Target IRR %':
@@ -1950,7 +1965,7 @@ with tab_viability:
 
                         # Year 0 values
                         base_gross = rent_roll.total_annual_revenue * rent_factor
-                        base_eff_gross = base_gross * (1 - p_vacancy - p_bad_debt)
+                        base_eff_gross = base_gross * (1 - p_vacancy_bad_debt)
                         base_opex_amt = base_eff_gross * p_opex
                         base_noi = base_eff_gross - base_opex_amt
                         base_cf = base_noi - ann_debt_svc
@@ -1966,7 +1981,7 @@ with tab_viability:
                             for y in range(yr):
                                 rev_growth *= (1 + rate_schedule[min(y, len(rate_schedule) - 1)])
                             yr_gross = base_gross * rev_growth
-                            yr_eff_gross = yr_gross * (1 - p_vacancy - p_bad_debt)
+                            yr_eff_gross = yr_gross * (1 - p_vacancy_bad_debt)
                             # OpEx grows by inflation
                             yr_opex = base_opex_amt * ((1 + inflation_assumption) ** yr)
                             yr_noi = yr_eff_gross - yr_opex
@@ -1978,7 +1993,7 @@ with tab_viability:
 
                         # Viability check
                         dscr_ok = pt_dscr >= 1.0
-                        irr_ok = pt_irr >= p_target_irr
+                        irr_ok = pt_irr >= p_target_irr - 0.0001  # tolerance for floating point
                         viable = dscr_ok and irr_ok
 
                         return {'dscr': pt_dscr, 'irr': pt_irr, 'viable': viable, 'dscr_ok': dscr_ok, 'irr_ok': irr_ok}
@@ -2044,6 +2059,322 @@ with tab_viability:
 
                     st.altair_chart(viability_chart, use_container_width=True)
 
-                    # Show current values
-                    st.caption(f"Current position: {x_param} = {x_cfg['format'].format(x_cfg['current'])}, {y_param} = {y_cfg['format'].format(y_cfg['current'])}")
+                    # Show all parameters table
+                    st.markdown("**Parameter Values**")
+                    param_table_data = []
+                    for param_name, param_cfg in VIABILITY_PARAMS.items():
+                        if param_name == x_param:
+                            role = "X-Axis"
+                            value_str = f"{x_cfg['format'].format(param_cfg['current'])} (varying)"
+                        elif param_name == y_param:
+                            role = "Y-Axis"
+                            value_str = f"{y_cfg['format'].format(param_cfg['current'])} (varying)"
+                        else:
+                            role = "Fixed"
+                            value_str = param_cfg['format'].format(param_cfg['current'])
+                        param_table_data.append({
+                            'Parameter': param_name,
+                            'Current Value': value_str,
+                            'Role': role,
+                        })
+
+                    param_table_df = pd.DataFrame(param_table_data)
+
+                    # Display as columns for compactness
+                    fixed_params_display = [p for p in param_table_data if p['Role'] == 'Fixed']
+                    axis_params_display = [p for p in param_table_data if p['Role'] != 'Fixed']
+
+                    st.caption(f"**Axes:** {x_param} = {x_cfg['format'].format(x_cfg['current'])} (X), {y_param} = {y_cfg['format'].format(y_cfg['current'])} (Y)")
+
+                    # Show fixed parameters in a compact row
+                    fixed_cols = st.columns(len(fixed_params_display))
+                    for idx, param in enumerate(fixed_params_display):
+                        with fixed_cols[idx]:
+                            st.metric(param['Parameter'], param['Current Value'], delta=None)
+
+                    # ---- Investment Product Structure ----
+                    if is_viable:
+                        st.divider()
+                        st.subheader("Investment Product Structure")
+                        st.caption("Structuring the equity gap as subordinated debt for non-profit financing.")
+
+                        # Calculate subordinated debt structures
+                        sub_debt_principal = equity
+                        hold_period = 25  # years
+                        target_irr = equity_return_required
+
+                        # Get cash flows available for sub debt (after senior debt service)
+                        available_cash_flows = [m['cash_flow'] for m in adjusted_time_series if m['year'] > 0]
+
+                        # Structure 1: Full Deferral (Soft Second)
+                        # No payments during hold, balloon at exit
+                        # Rate = target IRR to deliver same return as equity
+                        soft_second_rate = target_irr
+                        soft_second_balloon = sub_debt_principal * ((1 + soft_second_rate) ** hold_period)
+
+                        # Structure 2: Deferred Start Interest-Only
+                        # Find optimal deferral period based on cash flow capacity
+                        # After deferral, pay interest only from available cash flow
+                        def calc_deferred_io_structure(principal, target_irr, cash_flows, hold_years):
+                            """
+                            Find optimal deferral period and rate for deferred interest-only structure.
+                            Returns: (deferral_years, rate, annual_payment, balloon, achieved_irr)
+                            """
+                            best_structure = None
+
+                            for deferral_years in range(1, hold_years):
+                                payment_years = hold_years - deferral_years
+                                if payment_years < 1:
+                                    continue
+
+                                # Available cash flow in payment years (use minimum to be conservative)
+                                payment_period_cfs = cash_flows[deferral_years:]
+                                if not payment_period_cfs:
+                                    continue
+                                min_available_cf = min(payment_period_cfs)
+
+                                # Max we can pay as interest only (leave some buffer)
+                                max_annual_payment = min_available_cf * 0.8  # 80% of available
+
+                                if max_annual_payment <= 0:
+                                    continue
+
+                                # Interest rate implied by this payment
+                                implied_rate = max_annual_payment / principal
+
+                                # Accrued interest during deferral (compounding)
+                                accrued_at_deferral_end = principal * ((1 + implied_rate) ** deferral_years)
+
+                                # Balloon = accrued principal + remaining after IO payments
+                                # During IO period, we pay interest only, so principal stays as accrued amount
+                                balloon = accrued_at_deferral_end
+
+                                # Calculate IRR for this structure
+                                # Cash flows: -principal at year 0, then 0 during deferral,
+                                # then annual_payment during IO, then balloon at exit
+                                structure_cfs = [-principal]
+                                for yr in range(1, hold_years + 1):
+                                    if yr <= deferral_years:
+                                        structure_cfs.append(0)
+                                    elif yr < hold_years:
+                                        structure_cfs.append(max_annual_payment)
+                                    else:
+                                        structure_cfs.append(max_annual_payment + balloon)
+
+                                try:
+                                    achieved_irr = npf.irr(structure_cfs)
+                                    if np.isnan(achieved_irr):
+                                        continue
+                                except:
+                                    continue
+
+                                # Check if this meets target IRR
+                                if achieved_irr >= target_irr * 0.95:  # Within 5% of target
+                                    if best_structure is None or deferral_years < best_structure[0]:
+                                        best_structure = (deferral_years, implied_rate, max_annual_payment, balloon, achieved_irr)
+
+                            return best_structure
+
+                        deferred_io = calc_deferred_io_structure(sub_debt_principal, target_irr, available_cash_flows, hold_period)
+
+                        # Structure 3: Residual Receipts
+                        # Pay whatever cash flow is available each year, balloon at exit
+                        def calc_residual_receipts_structure(principal, target_irr, cash_flows, hold_years):
+                            """
+                            Structure where sub debt receives available cash flow each year.
+                            Calculate implied rate and balloon needed to hit target IRR.
+                            """
+                            # Use 50% of available cash flow for sub debt payments
+                            annual_payments = [max(0, cf * 0.5) for cf in cash_flows]
+                            total_payments = sum(annual_payments)
+
+                            # Target total return
+                            target_total = principal * ((1 + target_irr) ** hold_years)
+                            balloon_needed = target_total - total_payments
+
+                            # Verify IRR
+                            structure_cfs = [-principal] + annual_payments[:-1] + [annual_payments[-1] + balloon_needed]
+                            try:
+                                achieved_irr = npf.irr(structure_cfs)
+                            except:
+                                achieved_irr = None
+
+                            return annual_payments, balloon_needed, achieved_irr
+
+                        residual_payments, residual_balloon, residual_irr = calc_residual_receipts_structure(
+                            sub_debt_principal, target_irr, available_cash_flows, hold_period
+                        )
+
+                        # Display capital stack summary
+                        st.markdown("**Optimized Capital Stack**")
+
+                        stack_cols = st.columns(3)
+                        with stack_cols[0]:
+                            st.metric("Senior Debt", f"${loan_amount:,.0f}", delta=f"{max_ltv:.0%} LTV")
+                        with stack_cols[1]:
+                            st.metric("Subordinated Debt", f"${sub_debt_principal:,.0f}", delta=f"{(1-max_ltv):.0%} of capital")
+                        with stack_cols[2]:
+                            st.metric("Total Capital", f"${acquisition_cost:,.0f}")
+
+                        st.markdown("---")
+
+                        # Recommended structure based on analysis
+                        st.markdown("**Subordinated Debt Structure Options**")
+
+                        # Option 1: Soft Second (always available)
+                        with st.expander("Option A: Soft Second (Full Deferral)", expanded=True):
+                            st.markdown(f"""
+                            **Structure:** Fully deferred subordinated loan - no payments during hold period.
+
+                            | Term | Value |
+                            |------|-------|
+                            | Principal | ${sub_debt_principal:,.0f} |
+                            | Interest Rate | {soft_second_rate:.2%} (accruing) |
+                            | Deferral Type | Full P&I Deferral |
+                            | Deferral Period | {hold_period} years (entire hold) |
+                            | Annual Payments | $0 |
+                            | Balloon at Exit | ${soft_second_balloon:,.0f} |
+                            | Investor IRR | {target_irr:.2%} |
+
+                            **How it works:** Interest accrues and compounds over the hold period.
+                            The entire principal plus accrued interest is repaid at exit (sale or refinance).
+                            This maximizes cash flow during operations while delivering target returns to investors.
+                            """)
+
+                            # Show year-by-year for soft second
+                            soft_second_schedule = []
+                            balance = sub_debt_principal
+                            for yr in range(hold_period + 1):
+                                if yr == 0:
+                                    soft_second_schedule.append({
+                                        'Year': yr, 'Payment': 0, 'Interest Accrued': 0,
+                                        'Balance': balance, 'Project Cash Flow': 0
+                                    })
+                                else:
+                                    interest = balance * soft_second_rate
+                                    balance += interest
+                                    project_cf = available_cash_flows[yr-1] if yr <= len(available_cash_flows) else 0
+                                    soft_second_schedule.append({
+                                        'Year': yr, 'Payment': 0, 'Interest Accrued': interest,
+                                        'Balance': balance, 'Project Cash Flow': project_cf
+                                    })
+
+                            ss_df = pd.DataFrame(soft_second_schedule)
+                            ss_df['Payment'] = ss_df['Payment'].apply(lambda x: f"${x:,.0f}")
+                            ss_df['Interest Accrued'] = ss_df['Interest Accrued'].apply(lambda x: f"${x:,.0f}")
+                            ss_df['Balance'] = ss_df['Balance'].apply(lambda x: f"${x:,.0f}")
+                            ss_df['Project Cash Flow'] = ss_df['Project Cash Flow'].apply(lambda x: f"${x:,.0f}")
+
+                            with st.expander("View Payment Schedule"):
+                                st.dataframe(ss_df, use_container_width=True, hide_index=True)
+
+                        # Option 2: Deferred Interest-Only (if feasible)
+                        if deferred_io:
+                            defer_yrs, dio_rate, dio_payment, dio_balloon, dio_irr = deferred_io
+                            with st.expander("Option B: Deferred Start Interest-Only"):
+                                st.markdown(f"""
+                                **Structure:** Payment holiday followed by interest-only payments.
+
+                                | Term | Value |
+                                |------|-------|
+                                | Principal | ${sub_debt_principal:,.0f} |
+                                | Interest Rate | {dio_rate:.2%} |
+                                | Deferral Type | Deferred Interest |
+                                | Deferral Period | {defer_yrs} years |
+                                | Payment Period | Years {defer_yrs + 1}-{hold_period} |
+                                | Annual Payment | ${dio_payment:,.0f} |
+                                | Balloon at Exit | ${dio_balloon:,.0f} |
+                                | Investor IRR | {dio_irr:.2%} |
+
+                                **How it works:** No payments for the first {defer_yrs} years while the project stabilizes.
+                                Interest accrues during deferral. After year {defer_yrs}, annual interest payments
+                                of ${dio_payment:,.0f} begin. Remaining balance due at exit.
+                                """)
+
+                                # Payment schedule for Deferred IO
+                                dio_schedule = []
+                                dio_balance = sub_debt_principal
+                                for yr in range(hold_period + 1):
+                                    if yr == 0:
+                                        dio_schedule.append({
+                                            'Year': yr, 'Payment': 0, 'Interest Accrued': 0,
+                                            'Balance': dio_balance, 'Project Cash Flow': 0
+                                        })
+                                    elif yr <= defer_yrs:
+                                        # Deferral period - interest accrues
+                                        interest = dio_balance * dio_rate
+                                        dio_balance += interest
+                                        project_cf = available_cash_flows[yr-1] if yr <= len(available_cash_flows) else 0
+                                        dio_schedule.append({
+                                            'Year': yr, 'Payment': 0, 'Interest Accrued': interest,
+                                            'Balance': dio_balance, 'Project Cash Flow': project_cf
+                                        })
+                                    else:
+                                        # Payment period - interest only
+                                        interest = dio_balance * dio_rate
+                                        payment = dio_payment
+                                        project_cf = available_cash_flows[yr-1] if yr <= len(available_cash_flows) else 0
+                                        dio_schedule.append({
+                                            'Year': yr, 'Payment': payment, 'Interest Accrued': interest - payment,
+                                            'Balance': dio_balance, 'Project Cash Flow': project_cf
+                                        })
+
+                                dio_df = pd.DataFrame(dio_schedule)
+                                dio_df['Payment'] = dio_df['Payment'].apply(lambda x: f"${x:,.0f}")
+                                dio_df['Interest Accrued'] = dio_df['Interest Accrued'].apply(lambda x: f"${x:,.0f}")
+                                dio_df['Balance'] = dio_df['Balance'].apply(lambda x: f"${x:,.0f}")
+                                dio_df['Project Cash Flow'] = dio_df['Project Cash Flow'].apply(lambda x: f"${x:,.0f}")
+
+                                with st.expander("View Payment Schedule"):
+                                    st.dataframe(dio_df, use_container_width=True, hide_index=True)
+
+                        # Option 3: Residual Receipts
+                        if residual_irr and not np.isnan(residual_irr) and residual_balloon > 0:
+                            avg_residual_payment = sum(residual_payments) / len(residual_payments)
+                            with st.expander("Option C: Residual Receipts"):
+                                st.markdown(f"""
+                                **Structure:** Payments tied to available cash flow each year.
+
+                                | Term | Value |
+                                |------|-------|
+                                | Principal | ${sub_debt_principal:,.0f} |
+                                | Deferral Type | Residual Receipts |
+                                | Annual Payments | ~${avg_residual_payment:,.0f} avg (50% of cash flow) |
+                                | Total Distributions | ${sum(residual_payments):,.0f} over {hold_period} years |
+                                | Balloon at Exit | ${residual_balloon:,.0f} |
+                                | Investor IRR | {residual_irr:.2%} |
+
+                                **How it works:** Investor receives 50% of available project cash flow each year.
+                                Remaining return delivered via balloon payment at exit. This shares both
+                                upside and risk with the project.
+                                """)
+
+                                # Payment schedule for Residual Receipts
+                                rr_schedule = []
+                                cumulative_paid = 0
+                                for yr in range(hold_period + 1):
+                                    if yr == 0:
+                                        rr_schedule.append({
+                                            'Year': yr, 'Project Cash Flow': 0, 'Payment (50%)': 0,
+                                            'Cumulative Paid': 0, 'Remaining to Target': sub_debt_principal * ((1 + target_irr) ** hold_period)
+                                        })
+                                    else:
+                                        project_cf = available_cash_flows[yr-1] if yr <= len(available_cash_flows) else 0
+                                        payment = residual_payments[yr-1] if yr <= len(residual_payments) else 0
+                                        cumulative_paid += payment
+                                        target_total = sub_debt_principal * ((1 + target_irr) ** hold_period)
+                                        remaining = target_total - cumulative_paid
+                                        rr_schedule.append({
+                                            'Year': yr, 'Project Cash Flow': project_cf, 'Payment (50%)': payment,
+                                            'Cumulative Paid': cumulative_paid, 'Remaining to Target': remaining
+                                        })
+
+                                rr_df = pd.DataFrame(rr_schedule)
+                                rr_df['Project Cash Flow'] = rr_df['Project Cash Flow'].apply(lambda x: f"${x:,.0f}")
+                                rr_df['Payment (50%)'] = rr_df['Payment (50%)'].apply(lambda x: f"${x:,.0f}")
+                                rr_df['Cumulative Paid'] = rr_df['Cumulative Paid'].apply(lambda x: f"${x:,.0f}")
+                                rr_df['Remaining to Target'] = rr_df['Remaining to Target'].apply(lambda x: f"${x:,.0f}")
+
+                                with st.expander("View Payment Schedule"):
+                                    st.dataframe(rr_df, use_container_width=True, hide_index=True)
 
